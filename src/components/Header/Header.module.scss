@@ -1,0 +1,35 @@
+/* Header.module.scss */
+
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Ваши пользовательские стили здесь */
+
+
+.header{
+    background: #010319;
+
+    .innerHeader{
+        max-width: 1440px;
+        height: 74px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content:  space-between;
+        .namesAnimeCinema{
+            font-size: 40px;
+            & span{
+                color: red;
+            }
+        }
+        .searchAndUser{
+            width: 130px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .menu {
+            width: 542px;
+        }
+    }
+}

@@ -1,0 +1,10 @@
+.nav{
+    .links{
+        display: flex;
+        & li{
+            display: flex;
+            flex-grow: 1;
+            
+        }
+    }
+}

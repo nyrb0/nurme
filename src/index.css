@@ -1,0 +1,19 @@
+@import url(./components/styles/resetToNull.css);
+:root {
+  background-color: #242424;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --font-family: "Roboto", sans-serif;
+  --second-family: "Inter", sans-serif;
+  --third-family: "Kameron", sans-serif;
+}
+.App{
+    font-size: 18px;
+    color: white;
+}
+.df{
+  display: flex;
+}

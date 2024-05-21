@@ -1,0 +1,16 @@
+.content{
+    margin-top: 47px;
+    & img{
+        border-radius: 15px;
+    }
+    .re{
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+        @media screen and (max-width: 1089px) {
+                grid-template-columns: repeat(2, 1fr); /* 2 колонки на планшетах и мобильных */
+        }
+       
+    }
+}
+
