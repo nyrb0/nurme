@@ -1,19 +1,45 @@
 @import url(./components/styles/resetToNull.css);
 :root {
-  background-color: #242424;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    background-color: #242424;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
-  --font-family: "Roboto", sans-serif;
-  --second-family: "Inter", sans-serif;
-  --third-family: "Kameron", sans-serif;
+    --roboto-regular: 'RobotoRegular', sans-serif;
+    --second-family: 'Inter', sans-serif;
+    --third-family: 'Kameron', sans-serif;
 }
-.App{
+.App {
     font-size: 18px;
     color: white;
+    font-family: var(--roboto-regular);
 }
-.df{
-  display: flex;
+.df {
+    display: flex;
+}
+
+@font-face {
+    font-family: 'RobotoRegular';
+    src: url('./fonts/Roboto-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'RobotoMedium';
+    src: url('./fonts/Roboto-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'RobotoLight';
+    src: url('./fonts/Roboto-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'RobotoBold';
+    src: url('./fonts/Roboto-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
 }

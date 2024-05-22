@@ -1,16 +1,17 @@
-.frame{
+.frame {
     width: 254px;
-    .genres{
+    .genres {
         width: 250px;
         overflow-x: auto;
         overflow-y: hidden;
-        white-space: nowrap; 
-        &::-webkit-scrollbar { /* для Webkit (Chrome, Safari, Opera) */
+        white-space: nowrap;
+        &::-webkit-scrollbar {
+            /* для Webkit (Chrome, Safari, Opera) */
             display: none;
         }
         scrollbar-width: none; /* для Firefox */
         -ms-overflow-style: none; /* для IE и Edge */
-        & .genre{
+        & .genre {
             background: rgba(149, 173, 220, 0.2);
             border-radius: 20px;
             padding: 3px 13px;
@@ -19,7 +20,7 @@
             text-align: center;
         }
     }
-    .titles{
+    .titles {
         font-weight: 600;
         font-size: 24px;
         white-space: nowrap; /* Запрещаем перенос текста на новую строку */

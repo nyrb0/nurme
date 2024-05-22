@@ -1,0 +1,56 @@
+.partContent {
+    & .posters {
+        border-radius: 20px;
+    }
+    & .aboutSingle {
+        margin-left: 30px;
+        .names {
+            & .ru {
+                font-family: 'RobotoBold', sans-serif;
+                font-size: 34px;
+                padding-bottom: 10px;
+            }
+            & .en {
+                font-family: 'RobotoLight', sans-serif;
+                font-weight: 300;
+                font-size: 24px;
+            }
+            margin-bottom: 31px;
+        }
+        & .desc {
+            font-family: 'RobotoLight', sans-serif;
+            font-size: 24px;
+            line-height: 30px;
+        }
+        .moreInformation {
+            font-size: 21px;
+            margin-top: 30px;
+            .genres {
+                font-family: 'RobotoLight', sans-serif;
+                margin: 0 0 10px 0;
+                & .inGen {
+                    display: flex;
+                    & span {
+                        font-family: 'RobotoMedium', sans-serif;
+
+                        color: #fff;
+                    }
+                }
+            }
+            & .status {
+                font-family: 'RobotoLight', sans-serif;
+                & span {
+                    font-family: 'RobotoMedium', sans-serif;
+                }
+                margin: 10px 0 10px 0;
+            }
+            & .type {
+                font-family: 'RobotoLight', sans-serif;
+                margin: 10px 0 10px 0;
+                & span {
+                    font-family: 'RobotoMedium', sans-serif;
+                }
+            }
+        }
+    }
+}

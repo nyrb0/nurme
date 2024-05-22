@@ -1,16 +1,17 @@
-import { FC } from "react"
+import { FC } from 'react';
 
 interface InterestedI {
-    which:string
-    
+    which: string;
 }
 
-const Interested:FC<InterestedI> = ({which}) => {
+const Interested: FC<InterestedI> = ({ which }) => {
     return (
         <div>
             {which}
-        </div>
-    )
-}
 
-export default Interested
+            {/* <img src={} alt="" /> */}
+        </div>
+    );
+};
+
+export default Interested;
