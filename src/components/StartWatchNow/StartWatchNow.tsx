@@ -4,8 +4,8 @@ import rightNowS from './StartWatchNow.module.scss';
 import { useGetUpdatesAnimeQuery } from '../../API/animeData';
 import ToWatch from '../ToWatch/ToWatch';
 const StartWatchNow: FC = () => {
-    const [page, setPages] = useState(2);
-    const [limit, setLimit] = useState(4);
+    const [page, setPages] = useState(7);
+    const [limit, setLimit] = useState(50);
 
     const { data, isLoading } = useGetUpdatesAnimeQuery({
         page,
@@ -19,7 +19,7 @@ const StartWatchNow: FC = () => {
     }
     return (
         <div className={rightNowS.content}>
-            <img width='100%' src={toWatch} alt='anime' />
+            {/* <img width='100%' src={toWatch} alt='anime' /> */}
             <div className={rightNowS.re}>
                 <ToWatch watch={data} />
             </div>

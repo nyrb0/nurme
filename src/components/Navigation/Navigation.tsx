@@ -8,6 +8,7 @@ const Navigation: FC = () => {
                 <li>Категории</li>
                 <li>Блог</li>
                 <li>Случайное</li>
+                <li>Расписание</li>
             </ul>
         </nav>
     );

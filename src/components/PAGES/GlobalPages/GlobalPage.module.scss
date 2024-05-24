@@ -1,6 +1,11 @@
-.global{
-    .innerGlobalP{
-        max-width: 1440px;
-        margin: 0 auto  ;
+.global {
+    .innerGlobalP {
+        max-width: 1400px;
+        margin: 0 auto;
+        backdrop-filter: blur(32px);
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 15px;
+        padding: 20px 20px 0 20px;
+        margin-top: 40px;
     }
 }

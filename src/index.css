@@ -1,6 +1,7 @@
 @import url(./components/styles/resetToNull.css);
 :root {
-    background-color: #242424;
+    background: url('./components/icons/GeneralBg.png') 0 0 / cover no-repeat;
+    background-position: center;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -19,6 +20,26 @@
     display: flex;
 }
 
+/* Определение переменных */
+:root {
+    --text-color: white;
+    --padding: 5px;
+    --border-radius: 4px;
+}
+
+/* Стилизация элемента select */
+select {
+    background-color: #242424;
+    color: var(--text-color);
+    padding: var(--padding);
+    border: none;
+    border-radius: var(--border-radius);
+}
+
+option {
+    background-color: #242424;
+    color: var(--text-color);
+}
 @font-face {
     font-family: 'RobotoRegular';
     src: url('./fonts/Roboto-Regular.ttf') format('truetype');

@@ -1,35 +1,30 @@
-/* Header.module.scss */
-
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-
-/* Ваши пользовательские стили здесь */
-
-
-.header{
-    background: #010319;
-
-    .innerHeader{
+.header {
+    backdrop-filter: blur(32px);
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    margin: 15px 20px 0 20px;
+    .innerHeader {
+        font-size: 22px;
         max-width: 1440px;
-        height: 74px;
+        height: 90px;
         margin: 0 auto;
         display: flex;
         align-items: center;
-        justify-content:  space-between;
-        .namesAnimeCinema{
-            font-size: 40px;
-            & span{
+        justify-content: space-between;
+        .namesAnimeCinema {
+            font-size: 50px;
+            font-family: 'RobotoBold', sans-serif;
+            & span {
                 color: red;
             }
         }
-        .searchAndUser{
+        .searchAndUser {
             width: 130px;
             display: flex;
             justify-content: space-between;
         }
         .menu {
-            width: 542px;
+            width: 700px;
         }
     }
 }

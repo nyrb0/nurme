@@ -16,10 +16,10 @@ export const animeData = createApi({
     endpoints: builder => ({
         getUpdatesAnime: builder.query<AnimeUpdates, Pages>({
             query: ({ page, limit }) =>
-                `title/updates?page=${page}&limit=${limit}`,
+                `title/updates?playlist_type=array&page=${page}&limit=${limit}`,
         }),
         getTheTitle: builder.query<Title, ids>({
-            query: ({ id }) => `title?id=${id}`,
+            query: ({ id }) => `title?id=${id}&playlist_type=array`,
         }),
     }),
 });

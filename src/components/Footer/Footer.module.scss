@@ -1,0 +1,14 @@
+.footer {
+    margin-top: 40px;
+    backdrop-filter: blur(32px);
+    background: rgba(255, 255, 255, 0.12);
+    & .innerFooter {
+        font-size: 22px;
+        max-width: 1440px;
+        height: 90px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

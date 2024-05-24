@@ -15,7 +15,7 @@
                 font-weight: 300;
                 font-size: 24px;
             }
-            margin-bottom: 31px;
+            margin-bottom: 40px;
         }
         & .desc {
             font-family: 'RobotoLight', sans-serif;
@@ -25,16 +25,15 @@
         .moreInformation {
             font-size: 21px;
             margin-top: 30px;
+            & span {
+                font-family: 'RobotoMedium', sans-serif;
+                color: #fff;
+            }
             .genres {
                 font-family: 'RobotoLight', sans-serif;
                 margin: 0 0 10px 0;
                 & .inGen {
                     display: flex;
-                    & span {
-                        font-family: 'RobotoMedium', sans-serif;
-
-                        color: #fff;
-                    }
                 }
             }
             & .status {
@@ -51,6 +50,27 @@
                     font-family: 'RobotoMedium', sans-serif;
                 }
             }
+            & .conti {
+                font-family: 'RobotoLight', sans-serif;
+                margin: 10px 0 10px 0;
+                & span {
+                    font-family: 'RobotoMedium', sans-serif;
+                }
+            }
         }
+    }
+}
+.videoPlayer {
+    margin-top: 40px;
+    & .episode {
+        margin: 0 5px 10px 0;
+    }
+    .selected {
+        padding: 5px 15px 5px 15px;
+        font-size: 20px;
+        margin: 0 0 10px 0;
+    }
+    & .quality {
+        padding: 0 5px 0 20px;
     }
 }
