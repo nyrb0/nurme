@@ -5,6 +5,7 @@ import StartWatchNow from '../../StartWatchNow/StartWatchNow';
 import { Route, Routes } from 'react-router-dom';
 import SingleAnimeItem from '../../SingleAnimeItem/SingleAnimeItem';
 import Footer from '../../Footer/Footer';
+import NotFoundAPage from '../NotFoundAPage/NotFoundAPage';
 const GlobalPage: FC = () => {
     return (
         <div className={GlobalS.global}>
@@ -16,6 +17,7 @@ const GlobalPage: FC = () => {
                         element={<SingleAnimeItem />}
                     />
                     <Route path='/right-now' element={<StartWatchNow />} />
+                    <Route path='*' element={<NotFoundAPage />} />
                 </Routes>
             </div>
             <Footer />

@@ -1,16 +1,40 @@
-.content{
+.content {
     margin-top: 47px;
-    & img{
+
+    & img {
         border-radius: 15px;
     }
-    .re{
+    .re {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 16px;
         @media screen and (max-width: 1089px) {
-                grid-template-columns: repeat(2, 1fr); /* 2 колонки на планшетах и мобильных */
+            grid-template-columns: repeat(
+                2,
+                1fr
+            ); /* 2 колонки на планшетах и мобильных */
         }
-       
+    }
+    & .view {
+        display: flex;
+        justify-content: center;
+        margin: 25px 0 0 0;
+
+        & button {
+            background: #242424;
+            padding: 10px;
+            font-size: 23px;
+            border: none;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+        }
     }
 }
 
+.warning {
+    height: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

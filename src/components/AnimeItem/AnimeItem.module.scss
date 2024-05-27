@@ -1,5 +1,11 @@
 .frame {
     width: 254px;
+    & .picture {
+        & img {
+            width: 254px;
+            height: 348px;
+        }
+    }
     .genres {
         width: 250px;
         overflow-x: auto;
@@ -19,6 +25,10 @@
             height: 26px;
             text-align: center;
         }
+    }
+    .gen {
+        padding: 10px 0 5px 0;
+        font-size: 20px;
     }
     .titles {
         font-weight: 600;

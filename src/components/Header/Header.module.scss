@@ -1,8 +1,12 @@
+// src/components/Header/Header.module.scss
+
 .header {
     backdrop-filter: blur(32px);
     background: rgba(255, 255, 255, 0.12);
     border-radius: 16px;
-    margin: 15px 20px 0 20px;
+    padding: 10px 20px;
+    position: relative;
+
     .innerHeader {
         font-size: 22px;
         max-width: 1440px;
@@ -11,18 +15,100 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+
         .namesAnimeCinema {
             font-size: 50px;
             font-family: 'RobotoBold', sans-serif;
+
             & span {
                 color: red;
             }
+
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
         }
+
         .searchAndUser {
-            width: 130px;
-            display: flex;
-            justify-content: space-between;
+            width: 500px;
+            position: relative;
+
+            .search {
+                outline: none;
+                background: rgba(255, 255, 255, 0.12);
+                border: none;
+                font-size: 22px;
+                padding: 7px 40px 7px 10px; // Отступ для иконки справа
+                width: 100%;
+                border-radius: 10px;
+                background-image: url('../icons/search.png');
+                background-repeat: no-repeat;
+                background-position: right 10px center; // Позиционирование иконки
+
+                &::-webkit-search-cancel-button {
+                    -webkit-appearance: none;
+                    appearance: none;
+                }
+
+                &::-ms-clear {
+                    display: none;
+                    width: 0;
+                    height: 0;
+                }
+            }
+
+            .resultSer {
+                position: absolute;
+                top: 200%;
+                left: 0;
+                width: 100%;
+
+                background: #141414;
+                color: white;
+                border-radius: 10px;
+                // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                z-index: 10;
+                overflow-y: scroll;
+                margin-top: 5px; // Отступ между полем поиска и результатами
+                &::-webkit-scrollbar {
+                    /* для Webkit (Chrome, Safari, Opera) */
+                    display: none;
+                }
+                scrollbar-width: none; /* для Firefox */
+                -ms-overflow-style: none; /* для IE и Edge */
+
+                li {
+                    display: flex;
+                    align-items: center;
+                    padding: 10px;
+                    cursor: pointer;
+                    transition: background 0.3s;
+                    & img {
+                        border-radius: 10px;
+                        margin-right: 10px;
+                    }
+                    & span {
+                        width: 100%;
+                        font-family: 'RobotoBold', sans-serif;
+                        font-size: 20px;
+                        white-space: nowrap; /* Запрещаем перенос текста на новую строку */
+                        overflow: hidden; /* Скрываем часть текста, которая выходит за пределы контейнера */
+                        text-overflow: ellipsis;
+                        & .genreSearch {
+                            & span {
+                                font-size: 14px;
+                                color: gray;
+                            }
+                        }
+                    }
+                    &:hover {
+                        background: rgba(255, 255, 255, 0.12);
+                    }
+                }
+            }
         }
+
         .menu {
             width: 700px;
         }

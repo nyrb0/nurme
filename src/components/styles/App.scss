@@ -1,3 +1,7 @@
-#root {
-    
+.namesAnimeCinema {
+    font-size: 50px;
+    font-family: 'RobotoBold', sans-serif;
+    & span {
+        color: red;
+    }
 }

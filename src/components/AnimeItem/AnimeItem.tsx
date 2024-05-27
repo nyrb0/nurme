@@ -13,15 +13,15 @@ const AnimeItem: FC<AnimeItemProps> = ({ items }) => {
         <>
             <div className={animeS.frame}>
                 <div>
-                    <Link to={`title/${items.id}`}>
+                    <Link to={`title/${items.id}`} className={animeS.picture}>
                         <img
-                            width={254}
-                            height={348}
                             src={`${THE_BASE_URL}${items?.posters?.original?.url}`}
                             alt='img anime'
                         />
                     </Link>
-                    Жанр:
+                    <div className={animeS.titles}>{items?.names.ru}</div>
+                    <div className={animeS.gen}>Жанры:</div>
+
                     <div className={`${animeS.genres} df`}>
                         {items.genres?.map(genre => (
                             <div key={genre} className={animeS.genre}>
@@ -29,7 +29,6 @@ const AnimeItem: FC<AnimeItemProps> = ({ items }) => {
                             </div>
                         ))}
                     </div>
-                    <div className={animeS.titles}>{items?.names.ru}</div>
                 </div>
             </div>
         </>

@@ -1,10 +1,16 @@
-.nav{
-    .links{
+.nav {
+    cursor: pointer;
+    .links {
         display: flex;
-        & li{
+        & li {
+            &:hover {
+                color: red;
+            }
             display: flex;
             flex-grow: 1;
-            
         }
     }
+}
+.active {
+    color: red;
 }

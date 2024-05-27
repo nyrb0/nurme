@@ -1,18 +1,18 @@
-import { FC } from 'react'
-import { AnimeUpdates } from '../../types/UpdateA'
-import AnimeItem from '../AnimeItem/AnimeItem'
+import { FC } from 'react';
+import { AnimeUpdates, Title } from '../../types/UpdateA';
+import AnimeItem from '../AnimeItem/AnimeItem';
 interface ToWatchProps {
-    watch: AnimeUpdates | undefined
+    watch: Title[] | undefined;
 }
 
-const ToWatch:FC<ToWatchProps> = ({watch}) => {
+const ToWatch: FC<ToWatchProps> = ({ watch }) => {
     return (
         <>
-            {watch?.list.map(itemsAnimes=>(
-                <AnimeItem items={itemsAnimes} key={itemsAnimes.id}/>
+            {watch?.map(itemsAnimes => (
+                <AnimeItem items={itemsAnimes} key={itemsAnimes.id} />
             ))}
         </>
-    )
-}
+    );
+};
 
-export default ToWatch
+export default ToWatch;

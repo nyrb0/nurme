@@ -21,7 +21,7 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
     console.log(single);
 
     const [theEpisode, setTheEpisode] = useState<string>('1');
-    const [quality, setQueality] = useState('fhd');
+    const [quality, setQueality] = useState('sd');
     const roadMap = [
         {
             toPathBack: '/right-now',
@@ -35,9 +35,9 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
 
     if (isLoading) {
         return (
-            <>
+            <div className={singleS.warning}>
                 <Loading />
-            </>
+            </div>
         );
     }
     if (isError) {
@@ -49,7 +49,7 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
     }
 
     return (
-        <section>
+        <section className='fade-in'>
             <ThePath path={roadMap} />
             <div className={`${singleS.partContent} df`}>
                 <img

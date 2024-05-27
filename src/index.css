@@ -1,7 +1,9 @@
 @import url(./components/styles/resetToNull.css);
 :root {
-    background: url('./components/icons/GeneralBg.png') 0 0 / cover no-repeat;
-    background-position: center;
+    background: url('./components/icons/GeneralBg.png');
+    background-size: cover;
+
+    background-attachment: fixed;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -12,6 +14,7 @@
     --third-family: 'Kameron', sans-serif;
 }
 .App {
+    height: 100%;
     font-size: 18px;
     color: white;
     font-family: var(--roboto-regular);
@@ -63,4 +66,17 @@ option {
     src: url('./fonts/Roboto-Bold.ttf') format('truetype');
     font-weight: 700;
     font-style: normal;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Класс для применения анимации */
+.fade-in {
+    animation: fadeIn 1s ease-in-out;
 }
