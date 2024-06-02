@@ -19,7 +19,7 @@
         .namesAnimeCinema {
             font-size: 50px;
             font-family: 'RobotoBold', sans-serif;
-
+            padding-right: 10px;
             & span {
                 color: red;
             }
@@ -101,9 +101,22 @@
                                 color: gray;
                             }
                         }
+                        & .year {
+                            padding-top: 5px;
+                            font-size: 14px;
+                        }
                     }
                     &:hover {
                         background: rgba(255, 255, 255, 0.12);
+                    }
+                }
+                .notResult {
+                    padding-top: 10px;
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+                    & li {
+                        font-size: 30px;
                     }
                 }
             }

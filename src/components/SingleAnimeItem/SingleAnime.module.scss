@@ -2,6 +2,14 @@
     & .posters {
         border-radius: 20px;
     }
+    & img {
+        width: 405px;
+        height: 572px;
+        @media screen and (max-width: 839px) {
+            width: 305px;
+            height: 472px;
+        }
+    }
     & .aboutSingle {
         margin-left: 30px;
         .names {
@@ -9,6 +17,9 @@
                 font-family: 'RobotoBold', sans-serif;
                 font-size: 34px;
                 padding-bottom: 10px;
+                @media screen and (max-width: 981px) {
+                    font-size: 30px;
+                }
             }
             & .en {
                 font-family: 'RobotoLight', sans-serif;
@@ -18,6 +29,9 @@
             margin-bottom: 40px;
         }
         & .desc {
+            @media screen and (max-width: 1400px) {
+                display: none;
+            }
             font-family: 'RobotoLight', sans-serif;
             font-size: 24px;
             line-height: 30px;
@@ -32,8 +46,9 @@
             .genres {
                 font-family: 'RobotoLight', sans-serif;
                 margin: 0 0 10px 0;
-                & .inGen {
-                    display: flex;
+                display: flex;
+                flex-wrap: wrap;
+                & spa {
                 }
             }
             & .status {
@@ -60,6 +75,16 @@
         }
     }
 }
+.descBottom {
+    display: none;
+    @media screen and (max-width: 1400px) {
+        display: block;
+    }
+    margin-top: 50px;
+    font-family: 'RobotoLight', sans-serif;
+    font-size: 24px;
+    line-height: 30px;
+}
 .videoPlayer {
     margin-top: 40px;
     & .episode {
@@ -69,6 +94,7 @@
         padding: 5px 15px 5px 15px;
         font-size: 20px;
         margin: 0 0 10px 0;
+        width: 150px;
     }
     & .quality {
         padding: 0 5px 0 20px;
@@ -76,8 +102,11 @@
 }
 
 .warning {
-    height: 1000px;
+    min-height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.error {
+    min-height: 60vh;
 }

@@ -1,15 +1,19 @@
-import { useState } from 'react';
 import './components/styles/App.scss';
 import GlobalPage from './components/PAGES/GlobalPages/GlobalPage';
 import './components/styles/App.scss';
+import { isVisibleContext } from './Context/Visible';
+import { useState } from 'react';
 
 function App() {
+    const [isVisible, setIsVisible] = useState(false);
     return (
-        <div className='App'>
-            <div className='Inner_App'>
-                <GlobalPage />
+        <isVisibleContext.Provider value={{ isVisible, setIsVisible }}>
+            <div className='App'>
+                <div className='Inner_App'>
+                    <GlobalPage />
+                </div>
             </div>
-        </div>
+        </isVisibleContext.Provider>
     );
 }
 

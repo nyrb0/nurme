@@ -6,18 +6,19 @@ import { Link } from 'react-router-dom';
 import { useGetResultSearchQuery } from '../../API/animeData';
 import { Title } from '../../types/UpdateA';
 import { THE_BASE_URL } from '../../utils/baseUrls';
-
+import notResultImage from '../icons/pngwing.com.png';
 const Header: FC = () => {
     const [title, setTitle] = useState<string>('');
-    const { data: resultSearch } = useGetResultSearchQuery({ title });
-    console.log(resultSearch);
+    const { data: resultSearch, isFetching } = useGetResultSearchQuery({
+        title,
+    });
 
     return (
         <header id='head' className={headerS.header}>
             <div className={headerS.innerHeader}>
                 <div className={headerS.namesAnimeCinema}>
                     <Link to={'/right-now'}>
-                        Nur<span>me</span>
+                        Nur<span>Bo</span>
                     </Link>
                 </div>
                 <div className={headerS.searchAndUser}>
@@ -48,6 +49,9 @@ const Header: FC = () => {
                                             />
                                             <span>
                                                 {resultS.names.ru}
+                                                <div className={headerS.year}>
+                                                    Год:{resultS?.season?.year}
+                                                </div>
                                                 <div
                                                     className={
                                                         headerS.genreSearch
@@ -67,15 +71,26 @@ const Header: FC = () => {
                                 ))}
                             </ul>
                         </div>
+                    ) : isFetching ? (
+                        <div className={headerS.resultSer}>
+                            <li className='dfc'>Загрузка...</li>
+                        </div>
                     ) : resultSearch?.list.length === 0 && title.length > 0 ? (
                         <div className={headerS.resultSer}>
                             <ul>
-                                <li>Нету ничего</li>
+                                <div className={headerS.notResult}>
+                                    <img
+                                        width={300}
+                                        src={`${notResultImage}`}
+                                        alt='fndbg'
+                                    />
+                                    <li style={{ textAlign: 'center' }}>
+                                        Нету результатов
+                                    </li>
+                                </div>
                             </ul>
                         </div>
-                    ) : (
-                        <></>
-                    )}
+                    ) : null}
                 </div>
                 <div className={headerS.menu}>
                     <Navigation />

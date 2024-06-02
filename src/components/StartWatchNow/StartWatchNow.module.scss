@@ -4,17 +4,22 @@
     & img {
         border-radius: 15px;
     }
-    .re {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 16px;
-        @media screen and (max-width: 1089px) {
-            grid-template-columns: repeat(
-                2,
-                1fr
-            ); /* 2 колонки на планшетах и мобильных */
+    .fullContent {
+        display: flex;
+        justify-content: center;
+        .re {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            @media screen and (max-width: 1400px) {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            @media screen and (max-width: 1164px) {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     }
+
     & .view {
         display: flex;
         justify-content: center;
@@ -30,10 +35,11 @@
             align-items: center;
         }
     }
+    min-height: 60vh;
 }
 
 .warning {
-    height: 1000px;
+    min-height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;

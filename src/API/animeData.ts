@@ -15,6 +15,10 @@ type titles = {
 type randomT = {
     random?: string;
 };
+type categoty = {
+    genres?: string | null;
+    year?: string | null;
+};
 
 export const animeData = createApi({
     reducerPath: 'animeUpdate',
@@ -29,17 +33,39 @@ export const animeData = createApi({
         }),
         getResultSearch: builder.query<AnimeUpdates, titles>({
             query: ({ title }) =>
-                `/title/search?filter=id,code,names.ru,genres,type.episodes,status.code,player.episodes,posters&search=${title}`,
+                `/title/search?filter=id,code,names.ru,genres,type.episodes,status.code,player.episodes,posters,season.year&search=${title}`,
         }),
         getRandomItem: builder.query<Title, randomT>({
             query: () => `title/random`,
         }),
+        getGenres: builder.query<[], any>({
+            query: () => `genres`,
+        }),
+        getYears: builder.query<[], any>({
+            query: () => `/years`,
+        }),
+        getResultCategory: builder.query<AnimeUpdates, categoty>({
+            query: ({ genres, year }) => {
+                let sort = 'title/search?';
+                if (year !== null) sort += `&year=${year}`;
+                if (genres !== null) sort += `&genres=${genres}`;
+                return sort;
+            },
+        }),
+        changes: builder.query<AnimeUpdates, any>({
+            query: () => `title/changes`,
+        }),
     }),
 });
-
+const urlss =
+    'filter=id,code,names.ru,genres,type.episodes,status.code,player.episodes,posters&search=${title}';
 export const {
     useGetUpdatesAnimeQuery,
     useGetTheTitleQuery,
     useGetResultSearchQuery,
     useGetRandomItemQuery,
+    useGetYearsQuery,
+    useGetGenresQuery,
+    useGetResultCategoryQuery,
+    useChangesQuery,
 } = animeData;

@@ -1,14 +1,20 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useContext, useState } from 'react';
 import navS from './Navigation.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { useGetRandomItemQuery } from '../../API/animeData';
+import Modal from '../Modal/Modal';
+import { isVisibleContext } from '../../Context/Visible';
 
 interface NavigationProps {}
 const Navigation: FC<NavigationProps> = () => {
     const random = useNavigate();
     const { data, refetch } = useGetRandomItemQuery({});
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
-    console.log(activeIndex);
+    const contextVis = useContext(isVisibleContext);
+    if (!contextVis) {
+        throw new Error('not have context');
+    }
+    const { setIsVisible } = contextVis;
     const handleRandomClick = () => {
         refetch();
         random(`right-now/title/${data?.id}`);
@@ -33,16 +39,13 @@ const Navigation: FC<NavigationProps> = () => {
                     Домой
                 </li>
                 <li
-                    onClick={() => handleAciveIndex(2)}
+                    onClick={() => {
+                        handleAciveIndex(2);
+                        setIsVisible(true);
+                    }}
                     className={activeIndex === 2 ? navS.active : ''}
                 >
                     Категории
-                </li>
-                <li
-                    onClick={() => handleAciveIndex(3)}
-                    className={activeIndex === 3 ? navS.active : ''}
-                >
-                    Блог
                 </li>
                 <li
                     onClick={() => {

@@ -2,7 +2,7 @@
 :root {
     background: url('./components/icons/GeneralBg.png');
     background-size: cover;
-
+    --for-all-color: white;
     background-attachment: fixed;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -14,7 +14,6 @@
     --third-family: 'Kameron', sans-serif;
 }
 .App {
-    height: 100%;
     font-size: 18px;
     color: white;
     font-family: var(--roboto-regular);
@@ -22,12 +21,21 @@
 .df {
     display: flex;
 }
+.dfc {
+    display: flex;
+    justify-content: center;
+}
+.dfd {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
 /* Определение переменных */
 :root {
     --text-color: white;
     --padding: 5px;
-    --border-radius: 4px;
+    --border-radius: 10px;
 }
 
 /* Стилизация элемента select */
@@ -37,12 +45,24 @@ select {
     padding: var(--padding);
     border: none;
     border-radius: var(--border-radius);
+    overflow: hidden; /* Скрыть полосу прокрутки */
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+    outline: none;
+    width: 100%;
+    padding: 20px;
+    font-family: 'RobotoBold', sans-serif;
+}
+select::-webkit-scrollbar {
+    display: none; /* Safari и Chrome */
 }
 
 option {
     background-color: #242424;
     color: var(--text-color);
+    font-size: 24px;
 }
+
 @font-face {
     font-family: 'RobotoRegular';
     src: url('./fonts/Roboto-Regular.ttf') format('truetype');

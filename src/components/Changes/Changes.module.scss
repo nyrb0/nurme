@@ -1,0 +1,23 @@
+.wrapper {
+    margin-left: 15px;
+    backdrop-filter: blur(32px);
+    background: rgba(255, 255, 255, 0.12);
+    height: 100%;
+    width: 439px;
+    padding: 15px;
+    border-radius: 15px;
+
+    width: 100%;
+    .image {
+        width: 100%;
+        height: 258px;
+        border-radius: 15px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    .name {
+        text-align: center;
+        font-size: 25px;
+    }
+}

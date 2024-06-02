@@ -26,3 +26,26 @@
         transform: rotate(360deg);
     }
 }
+
+.error {
+    color: red;
+    font-size: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & .message {
+        font-family: 'RobotoMedium', Times, serif;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        line-height: 30px;
+    }
+    & .comeBack {
+        padding-top: 20px;
+        display: flex;
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+}

@@ -19,9 +19,28 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
         isError,
     } = useGetTheTitleQuery({ id: id || '' });
     console.log(single);
-
     const [theEpisode, setTheEpisode] = useState<string>('1');
-    const [quality, setQueality] = useState('sd');
+
+    const [quality, setQuality] = useState('');
+    useEffect(() => {
+        setTheEpisode(
+            single?.player.episodes.first
+                ? single.player.episodes.first.toString()
+                : single?.player.list[0].episode
+                ? single?.player.list[0].episode.toString()
+                : '0'
+        );
+        if (single?.player.list && single.player.list.length > 0) {
+            const firstEpisodeQualities = single.player.list[1].hls;
+            if (firstEpisodeQualities.sd) {
+                setQuality('sd');
+            } else if (firstEpisodeQualities.hd) {
+                setQuality('hd');
+            } else if (firstEpisodeQualities.fhd) {
+                setQuality('fhd');
+            }
+        }
+    }, [single]);
     const roadMap = [
         {
             toPathBack: '/right-now',
@@ -32,7 +51,6 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
             nameToPath: `${single?.names.en}`,
         },
     ];
-
     if (isLoading) {
         return (
             <div className={singleS.warning}>
@@ -42,19 +60,16 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
     }
     if (isError) {
         return (
-            <>
-                <Error />
-            </>
+            <div className={singleS.error}>
+                <Error children={<div>Ошибка</div>} comeBack='/right-now' />
+            </div>
         );
     }
-
     return (
         <section className='fade-in'>
             <ThePath path={roadMap} />
             <div className={`${singleS.partContent} df`}>
                 <img
-                    width={405}
-                    height={572}
                     src={`${THE_BASE_URL}${single?.posters?.original?.url}`}
                     alt='singleAnime'
                     className={singleS.posters}
@@ -68,23 +83,27 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
                     <div className={singleS.moreInformation}>
                         <div className={`${singleS.genres} df`}>
                             Жанры:
-                            <div className={singleS.inGen}>
+                            <>
                                 {single?.genres.map(genres => (
                                     <span
                                         style={{ marginRight: 5 }}
                                         key={genres}
+                                        className={singleS.inGen}
                                     >
                                         {genres}
                                     </span>
                                 ))}
-                            </div>
+                            </>
                         </div>
                         <div className={singleS.status}>
                             Статус: <span>{single?.status.string}</span>
                         </div>
                         <div className={singleS.type}>
                             Типы:{' '}
-                            <span>{single?.type.string.toUpperCase()}</span>
+                            <span>
+                                {single?.type.string?.toUpperCase() ||
+                                    'отсутсвует'}
+                            </span>
                         </div>
                         <div className={singleS.conti}>
                             Продолжительность:{' '}
@@ -96,6 +115,7 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
                     </div>
                 </div>
             </div>
+            <div className={singleS.descBottom}>{single?.description}</div>
             <div className={singleS.videoPlayer}>
                 <span className={singleS.episode}>Эпизоды:</span>
                 <select
@@ -115,7 +135,7 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
                 <select
                     value={quality}
                     onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-                        setQueality(e.target.value)
+                        setQuality(e.target.value)
                     }
                     className={singleS.selected}
                 >
@@ -132,11 +152,11 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
                             key={episode.episode}
                             controls
                             url={`${THE_VIDEO}${
-                                quality === 'hd'
+                                quality === 'sd'
+                                    ? episode.hls.sd
+                                    : quality === 'hd'
                                     ? episode.hls.hd
-                                    : quality === 'fhd'
-                                    ? episode.hls.fhd
-                                    : episode.hls.sd
+                                    : episode.hls.fhd
                             }`}
                         />
                     ) : (

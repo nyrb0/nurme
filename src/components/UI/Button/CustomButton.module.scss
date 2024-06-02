@@ -1,0 +1,12 @@
+.button {
+    padding: 20px 60px 20px 60px;
+    font-size: 20px;
+    border: none;
+    background-color: #242424;
+    color: var(--for-all-color);
+    border-radius: 15px;
+    font-family: RobotoBold, sans-serif;
+    &:hover {
+        color: rgb(178, 199, 216);
+    }
+}

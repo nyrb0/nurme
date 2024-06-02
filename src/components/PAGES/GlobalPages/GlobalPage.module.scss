@@ -1,5 +1,7 @@
 .global {
     margin: 15px 20px 15px 20px;
+    height: 100%;
+
     .innerGlobalP {
         max-width: 1400px;
         margin: 0 auto;
@@ -9,5 +11,22 @@
         padding: 20px 20px 50px 20px;
         margin-top: 40px;
         margin-bottom: 100px;
+    }
+}
+.category {
+    .category {
+        font-size: 20px;
+        text-align: center;
+        margin-top: 10px;
+    }
+    .button {
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+    }
+    .sortT {
+        font-family: RobotoBold, sans-serif;
+        font-size: 30px;
+        margin-bottom: 20px;
     }
 }

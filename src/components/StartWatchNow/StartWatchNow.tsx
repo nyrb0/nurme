@@ -5,16 +5,17 @@ import ToWatch from '../ToWatch/ToWatch';
 import { FaLongArrowAltDown } from 'react-icons/fa';
 import { Title } from '../../types/UpdateA';
 import Loading from '../Warning/Loading';
+import Error from '../Warning/Error';
+import Changes from '../Changes/Changes';
 
 const StartWatchNow: FC = () => {
     const [page, setPage] = useState(1);
     const [limit] = useState(16);
     const [animeList, setAnimeList] = useState<Title[]>([]);
-    const { data, isLoading, isFetching } = useGetUpdatesAnimeQuery({
+    const { data, isLoading, isError, isFetching } = useGetUpdatesAnimeQuery({
         page,
         limit,
     });
-    console.log(data);
 
     useEffect(() => {
         if (data) {
@@ -33,7 +34,6 @@ const StartWatchNow: FC = () => {
     const moreItem = () => {
         setPage(thePage => thePage + 1);
     };
-
     if (isLoading && page === 1) {
         return (
             <div className={rightNowS.warning}>
@@ -41,18 +41,40 @@ const StartWatchNow: FC = () => {
             </div>
         );
     }
-
+    if (isError) {
+        return (
+            <div className={rightNowS.warning}>
+                <Error
+                    children={
+                        <>
+                            Упс,произала ошибка
+                            <div>Попробуйте перезагрузить</div>
+                        </>
+                    }
+                />
+            </div>
+        );
+    }
     return (
         <div className={`${rightNowS.content} fade-in`}>
-            <div className={rightNowS.re}>
-                <ToWatch watch={animeList} />
+            <div className={rightNowS.fullContent}>
+                <div className={rightNowS.re}>
+                    <ToWatch watch={animeList} />
+                </div>
+                {/* <Changes /> */}
             </div>
 
-            <div className={rightNowS.view}>
-                <button onClick={moreItem} disabled={isFetching}>
-                    Показать еще
-                    <FaLongArrowAltDown />
-                </button>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                {isFetching ? (
+                    <Loading />
+                ) : (
+                    <div className={rightNowS.view}>
+                        <button onClick={moreItem} disabled={isFetching}>
+                            Показать еще
+                            <FaLongArrowAltDown />
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     );
