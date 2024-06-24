@@ -1,0 +1,150 @@
+.project {
+    margin-top: 70px;
+    overflow: hidden;
+    .music {
+        position: fixed;
+        right: 20px;
+        z-index: 99;
+        background: red;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+    }
+    .wrapper {
+        .welcome {
+            font-size: 50px;
+            text-align: center;
+            font-family: 'RobotoBold', sans-serif;
+
+            & span {
+                font-size: 60px;
+                @media screen and (max-width: 754px) {
+                    font-size: 50px;
+                }
+                @media screen and (max-width: 559px) {
+                    font-size: 40px;
+                }
+                @media screen and (max-width: 408px) {
+                    font-size: 25px;
+                }
+                @media screen and (max-width: 279px) {
+                    font-size: 15px;
+                }
+                & span {
+                    color: red;
+                }
+            }
+            @media screen and (max-width: 754px) {
+                font-size: 40px;
+            }
+            @media screen and (max-width: 559px) {
+                font-size: 30px;
+            }
+            @media screen and (max-width: 408px) {
+                font-size: 25px;
+            }
+            @media screen and (max-width: 279px) {
+                font-size: 15px;
+            }
+        }
+        .anims1 {
+            display: flex;
+            position: relative;
+            overflow: hidden;
+
+            .ribbon1 {
+                display: flex;
+                animation: scroll1 30s infinite linear;
+                & span {
+                    transition: transform 0.3s ease;
+                    padding: 0 5px;
+                    transform: scale(0.95);
+                    &:hover {
+                        transform: scale(1);
+                    }
+                }
+            }
+            margin-bottom: 50px;
+        }
+        .anims2 {
+            display: flex;
+            position: relative;
+            overflow: hidden;
+            .ribbon2 {
+                display: flex;
+                animation: scroll2 30s infinite linear;
+                & span {
+                    transition: transform 0.3s ease;
+                    padding: 0 10px;
+                    transform: scale(0.95);
+                    &:hover {
+                        transform: scale(1);
+                    }
+                }
+            }
+        }
+
+        .watchRightNow {
+            margin-top: 100px;
+            position: relative;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            & span {
+                width: 200px;
+                height: 40px;
+            }
+            .danceGif {
+                position: absolute;
+                top: -120px;
+                z-index: -1;
+                transform: translateY(13px);
+            }
+            margin-bottom: 20px;
+        }
+        .arrow {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 80px;
+            animation: arr 2s ease infinite;
+        }
+        .interesting {
+            font-family: 'RobotoMedium', sans-serif;
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+    }
+}
+
+@keyframes arr {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(20px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes scroll1 {
+    0% {
+        transform: translate(-100%);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+@keyframes scroll2 {
+    0% {
+        transform: translate(0);
+    }
+    100% {
+        transform: translate(-100%);
+    }
+}

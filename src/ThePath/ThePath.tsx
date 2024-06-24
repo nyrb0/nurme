@@ -11,15 +11,16 @@ type theRoad = {
 interface PathProps {
     path: theRoad[];
 }
-
 const ThePath: FC<PathProps> = ({ path }) => {
     return (
         <div className={pathS.thePath}>
-            <IoIosHome
-                size={37}
-                style={{ marginRight: 10 }}
-                className={pathS.home}
-            />
+            <Link to={'/right-now'}>
+                <IoIosHome
+                    size={37}
+                    style={{ marginRight: 10 }}
+                    className={pathS.home}
+                />
+            </Link>
             {path.map((road, index) => (
                 <div className={pathS.links} key={index}>
                     <Link to={road.toPathBack} className={pathS.link}>

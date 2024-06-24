@@ -1,0 +1,58 @@
+.regis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    font-family: 'RobotoMedium', sans-serif;
+    .auth {
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(32px);
+        border-radius: 15px;
+        width: 500px;
+
+        .route {
+            font-size: 18px;
+            padding: 10px 0 10px 0;
+            text-align: center;
+            @media screen and (max-width: 481px) {
+                font-size: 15px;
+            }
+        }
+        .nameProject {
+            text-align: center;
+            font-size: 70px;
+            font-family: 'RobotoBold', sans-serif;
+            margin-bottom: 80px;
+            & span {
+                color: red;
+            }
+            @media screen and (max-width: 481px) {
+                font-size: 50px;
+            }
+        }
+        .isAcc {
+            display: flex;
+            justify-content: center;
+
+            & span {
+                height: 40px;
+                width: 200px;
+                padding: 0 5px;
+                @media screen and (max-width: 481px) {
+                    width: 150px;
+                }
+                @media screen and (max-width: 330px) {
+                    width: 130px;
+                }
+            }
+        }
+        & p {
+            opacity: 0.7;
+            font-size: 15px;
+            text-align: center;
+            padding-top: 30px;
+            color: yellow;
+        }
+        padding-bottom: 20px;
+    }
+}

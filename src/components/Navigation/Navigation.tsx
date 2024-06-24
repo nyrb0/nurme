@@ -1,19 +1,25 @@
 import { FC, useContext, useState } from 'react';
 import navS from './Navigation.module.scss';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useGetRandomItemQuery } from '../../API/animeData';
-import Modal from '../Modal/Modal';
 import { isVisibleContext } from '../../Context/Visible';
-
+import { menuContext } from '../../Context/Menu';
+import { motion } from 'framer-motion';
 interface NavigationProps {}
 const Navigation: FC<NavigationProps> = () => {
     const random = useNavigate();
+    const toRoute = useNavigate();
     const { data, refetch } = useGetRandomItemQuery({});
     const [activeIndex, setActiveIndex] = useState<number | null>(null);
+    const menuCon = useContext(menuContext);
+
     const contextVis = useContext(isVisibleContext);
+
+    if (!menuCon) throw new Error('error in menuContext');
     if (!contextVis) {
         throw new Error('not have context');
     }
+    const { setMenu } = menuCon;
     const { setIsVisible } = contextVis;
     const handleRandomClick = () => {
         refetch();
@@ -25,43 +31,64 @@ const Navigation: FC<NavigationProps> = () => {
             handleRandomClick();
         }
     };
-
+    const location = useLocation();
+    const currentL = location.pathname;
     return (
         <nav className={navS.nav}>
             <ul className={navS.links}>
-                <li
+                <motion.li
                     onClick={() => {
                         handleAciveIndex(1);
                         random('/right-now');
                     }}
-                    className={activeIndex === 1 ? navS.active : ''}
+                    className={
+                        location.pathname === '/right-now' ? navS.active : ''
+                    }
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.3 }}
                 >
                     Домой
-                </li>
-                <li
+                </motion.li>
+                <motion.li
                     onClick={() => {
                         handleAciveIndex(2);
                         setIsVisible(true);
+                        setMenu(false);
                     }}
-                    className={activeIndex === 2 ? navS.active : ''}
+                    className={
+                        currentL.startsWith('/category') ? navS.active : ''
+                    }
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.5 }}
                 >
                     Категории
-                </li>
-                <li
+                </motion.li>
+                <motion.li
                     onClick={() => {
                         handleAciveIndex(4, 'ok');
                     }}
-                    className={activeIndex === 4 ? navS.active : ''}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.5 }}
                 >
                     {' '}
                     Случайное
-                </li>
-                <li
-                    onClick={() => handleAciveIndex(5)}
-                    className={activeIndex === 5 ? navS.active : ''}
+                </motion.li>
+                <motion.li
+                    onClick={() => {
+                        toRoute('/schedule');
+                    }}
+                    className={
+                        currentL.startsWith('/schedule') ? navS.active : ''
+                    }
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.7 }}
                 >
                     Расписание
-                </li>
+                </motion.li>
             </ul>
         </nav>
     );

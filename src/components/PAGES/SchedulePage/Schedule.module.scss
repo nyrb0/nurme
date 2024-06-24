@@ -1,0 +1,48 @@
+.days {
+    .day {
+        text-align: center;
+        font-size: 30px;
+        margin-bottom: 20px;
+        font-family: 'RobotoBold', sans-serif;
+    }
+    .lengthList {
+        position: relative;
+        .leftBtn {
+            position: absolute;
+            top: 30%;
+            left: 0px;
+            z-index: 9;
+        }
+        .rightBtn {
+            position: absolute;
+            top: 30%;
+            right: 0px;
+            z-index: 9;
+        }
+        .dayList {
+            transition: transform 0.3s ease;
+            transform: scale(0.95);
+            &:hover {
+                transform: scale(1);
+            }
+
+            display: flex;
+            overflow-x: scroll;
+            -webkit-overflow-scrolling: touch;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            margin-bottom: 20px;
+            .single {
+                margin-right: 7px;
+                transition: transform 0.3s ease;
+                transform: scale(0.95);
+                &:hover {
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+}

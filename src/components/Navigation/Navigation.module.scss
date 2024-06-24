@@ -2,13 +2,21 @@
     cursor: pointer;
     .links {
         display: flex;
+        @media screen and (max-width: 1217px) {
+            flex-direction: column;
+            align-items: center;
+            font-size: 27px;
+        }
         & li {
             &:hover {
                 color: red;
             }
+            @media screen and (max-width: 1217px) {
+                margin-bottom: 20px;
+            }
             display: flex;
             flex-grow: 1;
-            padding: 0 5px 0 5px;
+            padding: 0 0 0 5px;
         }
     }
 }

@@ -1,15 +1,29 @@
 .fullContent {
     display: flex;
     justify-content: center;
-    .re {
-        display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 16px;
-        @media screen and (max-width: 1400px) {
-            grid-template-columns: repeat(4, 1fr);
+    .wrapper {
+        height: 100%;
+
+        & span {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            & span {
+                height: 50px;
+                width: 180px;
+            }
         }
-        @media screen and (max-width: 1164px) {
-            grid-template-columns: repeat(3, 1fr);
+        .loadingAdd {
+            display: flex;
+            justify-content: center;
         }
     }
+}
+
+.loading {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh - 20vh;
 }

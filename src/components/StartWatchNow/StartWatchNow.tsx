@@ -10,7 +10,7 @@ import Changes from '../Changes/Changes';
 
 const StartWatchNow: FC = () => {
     const [page, setPage] = useState(1);
-    const [limit] = useState(16);
+    const [limit] = useState(20);
     const [animeList, setAnimeList] = useState<Title[]>([]);
     const { data, isLoading, isError, isFetching } = useGetUpdatesAnimeQuery({
         page,
@@ -47,7 +47,7 @@ const StartWatchNow: FC = () => {
                 <Error
                     children={
                         <>
-                            Упс,произала ошибка
+                            Упс,произашла ошибка
                             <div>Попробуйте перезагрузить</div>
                         </>
                     }
@@ -58,7 +58,7 @@ const StartWatchNow: FC = () => {
     return (
         <div className={`${rightNowS.content} fade-in`}>
             <div className={rightNowS.fullContent}>
-                <div className={rightNowS.re}>
+                <div className={`${rightNowS.re} column`}>
                     <ToWatch watch={animeList} />
                 </div>
                 {/* <Changes /> */}

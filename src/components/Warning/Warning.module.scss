@@ -28,24 +28,45 @@
 }
 
 .error {
-    color: red;
-    font-size: 25px;
+    margin-top: 100px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(6px);
+    border-radius: 15px;
+    width: 400px;
+    height: 400px;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    & .message {
-        font-family: 'RobotoMedium', Times, serif;
-        font-weight: 700;
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        line-height: 30px;
+    position: relative;
+    & img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -130%);
     }
-    & .comeBack {
-        padding-top: 20px;
-        display: flex;
-        &:hover {
-            opacity: 0.7;
+    .wrapper {
+        .eContent {
+            font-size: 25px;
+            text-align: center;
+            @media screen and (max-width: 387px) {
+                font-size: 18px;
+            }
+            & .message {
+                font-family: 'RobotoMedium', sans-serif;
+            }
+            & .comeBack {
+                padding-top: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                & span {
+                    padding: 0 10px 0 10px;
+                }
+                &:hover {
+                    opacity: 0.7;
+                }
+            }
         }
     }
 }

@@ -14,23 +14,28 @@ const Error: FC<ErrorI> = ({ message, children, comeBack }) => {
     const navigate = useNavigate();
     return (
         <section className={errorS.error}>
-            <img width={400} src={Yagami} alt='Error' />
-
-            {children && (
-                <>
-                    <div className={errorS.message}>{children}</div>
-                    {comeBack && (
-                        <div
-                            className={errorS.comeBack}
-                            onClick={() => navigate(`${comeBack}`)}
-                        >
-                            <FaLongArrowAltRight />
-                            Вернуться домой
-                            <FaLongArrowAltLeft />
+            <div>
+                <img width={300} src={Yagami} alt='Error' />
+            </div>
+            <div className={errorS.wrapper}>
+                <div className={errorS.eContent}>
+                    {children && (
+                        <div>
+                            <div className={errorS.message}>{children}</div>
+                            {comeBack && (
+                                <div
+                                    className={errorS.comeBack}
+                                    onClick={() => navigate(`${comeBack}`)}
+                                >
+                                    <FaLongArrowAltRight />
+                                    <span>Вернуться домой</span>
+                                    <FaLongArrowAltLeft />
+                                </div>
+                            )}
                         </div>
                     )}
-                </>
-            )}
+                </div>
+            </div>
         </section>
     );
 };

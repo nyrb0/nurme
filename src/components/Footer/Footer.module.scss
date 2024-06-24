@@ -6,11 +6,19 @@
     position: relative;
     .arrow {
         position: absolute;
-        top: -25%;
-        right: 48%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -130%);
+        & img {
+            width: 10px;
+            height: 10px;
+        }
     }
     & .innerFooter {
-        font-size: 22px;
+        padding-left: 20px;
+        @media screen and (max-width: 934px) {
+            font-size: 10px;
+        }
         max-width: 1440px;
         height: 140px;
         margin: 0 auto;

@@ -1,0 +1,57 @@
+.select {
+    position: relative;
+    cursor: pointer;
+    background: #242424;
+    height: 50px;
+    border-radius: 10px;
+    font-size: 18px;
+    & span {
+        font-size: 20px;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    & .arrow {
+        position: absolute;
+        right: 10px;
+        top: 20px;
+    }
+
+    & .options {
+        position: absolute;
+        top: 66px;
+        width: 100%;
+        height: 400px;
+        background: #242424;
+        border-radius: 15px;
+        z-index: 999;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+            width: 5px; // Ширина полосы прокрутки
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #ccc; // Цвет полосы прокрутки
+            border-radius: 10px; // Скругление углов
+        }
+
+        &::-webkit-scrollbar-button {
+            display: none; // Скрываем стандартные кнопки полосы прокрутки
+        }
+
+        &::-webkit-scrollbar-button:end:hover {
+            background-color: #eee; // Цвет кнопки при наведении
+        }
+        .selfOpition {
+            padding: 15px 0 15px 0;
+            font-family: 'RobotoBold';
+            @media screen and (max-width: 463px) {
+                font-size: 16px;
+            }
+            &:hover {
+                background: rgba(255, 255, 255, 0.12);
+            }
+        }
+    }
+}

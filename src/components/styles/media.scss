@@ -1,0 +1,27 @@
+.column {
+    display: grid;
+    grid-template-columns: repeat(5, 0fr);
+    gap: 16px;
+    @media screen and (max-width: 1400px) {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    @media screen and (max-width: 1015px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    @media screen and (max-width: 751px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (max-width: 503px) {
+        gap: 13px;
+    }
+    @media screen and (max-width: 330px) {
+        gap: 13px;
+    }
+}
+
+.mtOprion {
+    margin-top: 20px;
+}
+.mtAndMtOprion {
+    margin: 5px 0 5px 0;
+}

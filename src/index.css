@@ -25,6 +25,10 @@
     display: flex;
     justify-content: center;
 }
+.dfa {
+    display: flex;
+    align-items: center;
+}
 .dfd {
     display: flex;
     align-items: center;
@@ -37,6 +41,12 @@
     --padding: 5px;
     --border-radius: 10px;
 }
+.loading {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 /* Стилизация элемента select */
 select {
@@ -45,13 +55,13 @@ select {
     padding: var(--padding);
     border: none;
     border-radius: var(--border-radius);
-    overflow: hidden; /* Скрыть полосу прокрутки */
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
-    scrollbar-width: none; /* Firefox */
+    overflow: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     outline: none;
     width: 100%;
-    padding: 20px;
-    font-family: 'RobotoBold', sans-serif;
+    font-family: 'RobotoMedium', sans-serif;
+    font-size: 16px;
 }
 select::-webkit-scrollbar {
     display: none; /* Safari и Chrome */
@@ -60,7 +70,14 @@ select::-webkit-scrollbar {
 option {
     background-color: #242424;
     color: var(--text-color);
-    font-size: 24px;
+    font-size: 18px;
+}
+body {
+    overflow: overlay;
+}
+.max-w {
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 @font-face {
@@ -96,7 +113,71 @@ option {
     }
 }
 
+.scrollOpacity {
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    scrollbar-width: none;
+
+    -ms-overflow-style: none;
+    overflow-x: scroll;
+}
+
 /* Класс для применения анимации */
 .fade-in {
-    animation: fadeIn 1s ease-in-out;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.fade-enter {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+.fade-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 500ms, transform 500ms;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.redBtn {
+    background-color: red;
+}
+.grayBtn {
+    background-color: #242424;
+}
+
+.warning {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    background: transparent;
+}
+
+/* Трек полосы прокрутки */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 10px;
+}
+
+/* Ползунок полосы прокрутки при наведении */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

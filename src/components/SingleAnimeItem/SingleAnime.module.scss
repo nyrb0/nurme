@@ -1,81 +1,174 @@
-.partContent {
-    & .posters {
-        border-radius: 20px;
-    }
-    & img {
-        width: 405px;
-        height: 572px;
-        @media screen and (max-width: 839px) {
-            width: 305px;
-            height: 472px;
-        }
-    }
-    & .aboutSingle {
-        margin-left: 30px;
-        .names {
-            & .ru {
-                font-family: 'RobotoBold', sans-serif;
-                font-size: 34px;
-                padding-bottom: 10px;
-                @media screen and (max-width: 981px) {
-                    font-size: 30px;
+section {
+    margin-top: 40px;
+    .partContent {
+        display: flex;
+        & .photo {
+            position: relative;
+            .hidden {
+                position: relative;
+                .wrapper {
+                    position: relative;
+                    z-index: -1;
+                    & .posters {
+                        position: relative;
+                        z-index: 0;
+                        width: 405px;
+                        height: 572px;
+                        background-size: cover;
+
+                        border-radius: 15px;
+                        @media screen and (max-width: 839px) {
+                            width: 305px;
+                            height: 472px;
+                        }
+
+                        @media screen and (max-width: 681px) {
+                            width: 120px;
+                            height: 190px;
+                        }
+                    }
+                }
+                & span {
+                    z-index: 1;
+                    position: absolute;
+                    bottom: 8px;
+                    right: 19px;
+                    @media screen and (max-width: 681px) {
+                        bottom: 0;
+                        right: 9px;
+                    }
                 }
             }
-            & .en {
+
+            & .warningFavorite {
+                & .wrapper {
+                    font-family: 'RobotoMedium', sans-serif;
+                    text-align: center;
+                    font-size: 20px;
+                    @media screen and (max-width: 370px) {
+                        font-size: 15px;
+                    }
+                    & h1 {
+                        padding-bottom: 10px;
+                    }
+                }
+
+                & .close {
+                    cursor: pointer;
+                    margin-top: 20px;
+                    text-align: center;
+                }
+            }
+        }
+
+        & .aboutSingle {
+            margin-left: 30px;
+            @media screen and (max-width: 626px) {
+                margin-left: 10px;
+            }
+            .names {
+                & .ru {
+                    font-family: 'RobotoBold', sans-serif;
+                    font-size: 34px;
+                    padding-bottom: 10px;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2; /* Ограничить до  строк */
+                    overflow: hidden;
+                    line-height: 50px;
+                    &::after {
+                        margin-bottom: 100px;
+                    }
+                    @media screen and (max-width: 981px) {
+                        font-size: 30px;
+                    }
+                    @media screen and (max-width: 681px) {
+                        font-size: 18px;
+                        line-height: 30px;
+                        -webkit-line-clamp: 2; /* Ограничить до  строк */
+                    }
+                    @media screen and (max-width: 598px) {
+                    }
+                }
+                & .en {
+                    font-family: 'RobotoLight', sans-serif;
+                    font-weight: 300;
+                    font-size: 24px;
+                    @media screen and (max-width: 681px) {
+                        display: none;
+                    }
+                }
+                margin-bottom: 40px;
+                @media screen and (max-width: 681px) {
+                    margin-bottom: 0;
+                }
+            }
+            & .desc {
+                @media screen and (max-width: 1400px) {
+                    display: none;
+                }
                 font-family: 'RobotoLight', sans-serif;
-                font-weight: 300;
                 font-size: 24px;
+                text-align: justify;
+                line-height: 30px;
             }
-            margin-bottom: 40px;
-        }
-        & .desc {
-            @media screen and (max-width: 1400px) {
-                display: none;
-            }
-            font-family: 'RobotoLight', sans-serif;
-            font-size: 24px;
-            line-height: 30px;
-        }
-        .moreInformation {
-            font-size: 21px;
-            margin-top: 30px;
-            & span {
-                font-family: 'RobotoMedium', sans-serif;
-                color: #fff;
-            }
-            .genres {
-                font-family: 'RobotoLight', sans-serif;
-                margin: 0 0 10px 0;
-                display: flex;
-                flex-wrap: wrap;
-                & spa {
+            .moreInformation {
+                font-size: 21px;
+                margin-top: 30px;
+                @media screen and (max-width: 681px) {
+                    font-size: 15px;
+                    margin-top: 0;
                 }
-            }
-            & .status {
-                font-family: 'RobotoLight', sans-serif;
                 & span {
                     font-family: 'RobotoMedium', sans-serif;
+                    color: #fff;
                 }
-                margin: 10px 0 10px 0;
-            }
-            & .type {
-                font-family: 'RobotoLight', sans-serif;
-                margin: 10px 0 10px 0;
-                & span {
-                    font-family: 'RobotoMedium', sans-serif;
+                .genres {
+                    font-family: 'RobotoLight', sans-serif;
+                    margin: 10px 0 10px 0;
+                    display: flex;
+                    flex-wrap: wrap;
+                    @media screen and (max-width: 383px) {
+                        margin: 3px 0 3px 0;
+                    }
                 }
-            }
-            & .conti {
-                font-family: 'RobotoLight', sans-serif;
-                margin: 10px 0 10px 0;
-                & span {
-                    font-family: 'RobotoMedium', sans-serif;
+                & .status {
+                    font-family: 'RobotoLight', sans-serif;
+                    & span {
+                        font-family: 'RobotoMedium', sans-serif;
+                    }
+                    margin: 10px 0 10px 0;
+                    @media screen and (max-width: 383px) {
+                        margin: 3px 0 3px 0;
+                    }
+                }
+                & .type {
+                    font-family: 'RobotoLight', sans-serif;
+                    margin: 10px 0 10px 0;
+                    & span {
+                        font-family: 'RobotoMedium', sans-serif;
+                    }
+                    @media screen and (max-width: 383px) {
+                        margin: 3px 0 3px 0;
+                    }
+                }
+                & .conti {
+                    font-family: 'RobotoLight', sans-serif;
+                    margin: 10px 0 10px 0;
+                    & span {
+                        font-family: 'RobotoMedium', sans-serif;
+                    }
+                    @media screen and (max-width: 383px) {
+                        margin: 3px 0 2.5px 0;
+                    }
                 }
             }
         }
     }
 }
+
 .descBottom {
+    text-align: justify;
     display: none;
     @media screen and (max-width: 1400px) {
         display: block;
@@ -84,29 +177,110 @@
     font-family: 'RobotoLight', sans-serif;
     font-size: 24px;
     line-height: 30px;
+    @media screen and (max-width: 746px) {
+        font-size: 15px;
+        line-height: 17px;
+    }
 }
 .videoPlayer {
     margin-top: 40px;
-    & .episode {
-        margin: 0 5px 10px 0;
+    font-size: 16px;
+    & .options {
+        @media screen and (max-width: 536px) {
+            display: flex;
+            justify-content: center;
+            font-size: 15px;
+        }
+        & .episode {
+            margin: 0 5px 10px 0;
+            @media screen and (max-width: 536px) {
+                display: none;
+            }
+        }
+
+        .selected {
+            font-size: 20px;
+            margin: 0 0 10px 0;
+            width: 150px;
+            @media screen and (max-width: 536px) {
+                font-size: 15px;
+                width: 100px;
+                margin: 0 5px 10px 5px;
+            }
+        }
+        & .quality {
+            @media screen and (max-width: 536px) {
+                display: none;
+            }
+            padding: 0 5px 0 20px;
+        }
     }
-    .selected {
-        padding: 5px 15px 5px 15px;
-        font-size: 20px;
-        margin: 0 0 10px 0;
-        width: 150px;
+}
+.similars {
+    margin-top: 50px;
+    padding: 20px 10px 20px 10px;
+    border-radius: 20px;
+    & .similarText {
+        font-size: 40px;
+        text-align: center;
+        padding-bottom: 20px;
+        @media screen and (max-width: 681px) {
+            font-size: 28px;
+        }
     }
-    & .quality {
-        padding: 0 5px 0 20px;
+    .simBox {
+        & .similar {
+            margin-right: 10px;
+        }
+
+        .similarLoading {
+            height: 300px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .scroll {
+            position: relative;
+
+            .innerScroll {
+                display: flex;
+                overflow-x: scroll;
+                -webkit-overflow-scrolling: touch;
+                &::-webkit-scrollbar {
+                    /* для Webkit (Chrome, Safari, Opera) */
+                    display: none;
+                }
+                scrollbar-width: none; /* для Firefox */
+                -ms-overflow-style: none; /* для IE и Edge */
+            }
+            .left {
+                padding: 10px;
+                position: absolute;
+                left: -20px;
+                top: 35%;
+                z-index: 999;
+                @media screen and (max-width: 346px) {
+                    top: 30%;
+                }
+            }
+            .right {
+                padding: 10px;
+                position: absolute;
+                right: -20px;
+                top: 35%;
+                z-index: 999;
+                @media screen and (max-width: 346px) {
+                    top: 30%;
+                }
+            }
+        }
     }
+
+    backdrop-filter: blur(32px);
+    background: rgba(255, 255, 255, 0.12);
 }
 
-.warning {
-    min-height: 60vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 .error {
     min-height: 60vh;
 }

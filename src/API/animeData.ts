@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASEURL } from '../utils/baseUrls';
 import { AnimeUpdates, Title } from '../types/UpdateA';
+import { Root2 } from '../types/SchuduleType';
 
 type Pages = {
     page: number;
@@ -11,15 +12,18 @@ type ids = {
 };
 type titles = {
     title: string;
+    limit?: number;
+    page?: number;
 };
 type randomT = {
     random?: string;
 };
 type categoty = {
-    genres?: string | null;
+    genres?: string | string[] | null;
     year?: string | null;
+    limit?: number;
+    page?: number;
 };
-
 export const animeData = createApi({
     reducerPath: 'animeUpdate',
     baseQuery: fetchBaseQuery({ baseUrl: BASEURL }),
@@ -32,8 +36,8 @@ export const animeData = createApi({
             query: ({ id }) => `title?id=${id}&playlist_type=array`,
         }),
         getResultSearch: builder.query<AnimeUpdates, titles>({
-            query: ({ title }) =>
-                `/title/search?filter=id,code,names.ru,genres,type.episodes,status.code,player.episodes,posters,season.year&search=${title}`,
+            query: ({ title, limit = 5, page = 1 }) =>
+                `/title/search?filter=id,code,names.ru,genres,type.episodes,status.code,player.episodes,player.episodes.last,posters,season.year&search=${title}&limit=${limit}&page=${page}`,
         }),
         getRandomItem: builder.query<Title, randomT>({
             query: () => `title/random`,
@@ -45,15 +49,20 @@ export const animeData = createApi({
             query: () => `/years`,
         }),
         getResultCategory: builder.query<AnimeUpdates, categoty>({
-            query: ({ genres, year }) => {
-                let sort = 'title/search?';
-                if (year !== null) sort += `&year=${year}`;
-                if (genres !== null) sort += `&genres=${genres}`;
-                return sort;
+            query: ({ genres, year, page = 1, limit = 10 }) => {
+                let sort =
+                    'title/search?filter=id,code,names.ru,genres,type.episodes,status.code,player.episodes,player.episodes.last,posters,season.year';
+                if (year) sort += `&year=${year}`;
+                if (genres && genres.length !== 0) sort += `&genres=${genres}`;
+                return `${sort}&page=${page}&items_per_page=${limit}`;
             },
         }),
         changes: builder.query<AnimeUpdates, any>({
             query: () => `title/changes`,
+        }),
+        sheduleList: builder.query<Root2[], any>({
+            query: () =>
+                `title/schedule?filter=id,code,names.ru,genres,type.episodes,status.code,player.episodes,posters`,
         }),
     }),
 });
@@ -68,4 +77,5 @@ export const {
     useGetGenresQuery,
     useGetResultCategoryQuery,
     useChangesQuery,
+    useSheduleListQuery,
 } = animeData;

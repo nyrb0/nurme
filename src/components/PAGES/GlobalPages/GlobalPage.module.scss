@@ -1,32 +1,128 @@
 .global {
     margin: 15px 20px 15px 20px;
     height: 100%;
+    @media screen and (max-width: 503px) {
+        margin: 10px;
+    }
 
     .innerGlobalP {
-        max-width: 1400px;
-        margin: 0 auto;
         // backdrop-filter: blur(32px);
         // background: rgba(255, 255, 255, 0.12);
         border-radius: 15px;
         padding: 20px 20px 50px 20px;
-        margin-top: 40px;
+        @media screen and (max-width: 626px) {
+            padding: 20px 0 0 0;
+        }
         margin-bottom: 100px;
     }
 }
+
 .category {
-    .category {
-        font-size: 20px;
-        text-align: center;
-        margin-top: 10px;
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+    padding-top: 13px;
+    font-family: 'RobotoMedium', sans-serif;
+    .selected {
+        margin-top: 15px;
+        .selectedGenres {
+            padding-left: 10px;
+            display: flex;
+            align-items: center;
+            background: #242424;
+            border-radius: 10px;
+            height: 45px;
+
+            & span {
+                margin-left: 10px;
+                backdrop-filter: blur(32px);
+                background: rgba(255, 255, 255, 0.12);
+                padding: 5px;
+                border-radius: 8px;
+                white-space: nowrap;
+                & span {
+                    background: none;
+                    cursor: pointer;
+                }
+            }
+        }
+        .resetGenres {
+            font-size: 13px;
+            font-family: 'RobotoBold';
+            margin-top: 5px;
+            cursor: pointer;
+            opacity: 0.8;
+            &:hover {
+                opacity: 0.6;
+            }
+            display: flex;
+            justify-content: flex-end;
+        }
     }
-    .button {
-        margin-top: 30px;
-        display: flex;
-        justify-content: center;
-    }
-    .sortT {
-        font-family: RobotoBold, sans-serif;
-        font-size: 30px;
+    .cate {
         margin-bottom: 20px;
     }
+    .button {
+        margin-top: 15px;
+        display: flex;
+        justify-content: center;
+        & span {
+            width: 180px;
+            height: 40px;
+        }
+    }
+    .sortT {
+        font-family: 'RobotoBold', sans-serif;
+        font-size: 24px;
+
+        @media screen and (max-width: 462px) {
+            font-size: 25px;
+        }
+    }
+}
+
+.titleC {
+    font-family: 'RobotoBold', sans-serif;
+    font-size: 20px;
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.menu {
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & span {
+        color: red;
+    }
+}
+.footer {
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    font-family: 'RobotoBold', sans-serif;
+    & span {
+        color: red;
+    }
+}
+
+.avatar {
+    display: flex;
+    justify-content: center;
+    margin: 0 6px 0 6px;
+    cursor: pointer;
+    top: 5px;
+    & img {
+        object-fit: cover;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+    }
+    margin-bottom: 15px;
+}
+.ppp {
+    max-width: 500px;
 }

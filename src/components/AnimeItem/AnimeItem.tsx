@@ -3,9 +3,9 @@ import animeS from './AnimeItem.module.scss';
 import { Link } from 'react-router-dom';
 import { THE_BASE_URL } from '../../utils/baseUrls';
 import { Title } from '../../types/UpdateA';
-
+import { List } from '../../types/SchuduleType';
 interface AnimeItemProps {
-    items: Title;
+    items: Title | List;
 }
 
 const AnimeItem: FC<AnimeItemProps> = ({ items }) => {
@@ -14,10 +14,19 @@ const AnimeItem: FC<AnimeItemProps> = ({ items }) => {
             <div className={animeS.frame}>
                 <div>
                     <Link to={`title/${items.id}`} className={animeS.picture}>
-                        <img
-                            src={`${THE_BASE_URL}${items?.posters?.original?.url}`}
-                            alt='img anime'
-                        />
+                        <div className={animeS.view}>
+                            <img
+                                src={`${THE_BASE_URL}${items.id}.webp`}
+                                alt={`${items.names}`}
+                            ></img>
+                            <div className={animeS.episode}>
+                                {items.player.episodes.last
+                                    ? items.player.episodes.last === 1
+                                        ? `${items.player.episodes.last} серия`
+                                        : `${items.player.episodes.last} серии`
+                                    : 'Пока не вышло'}
+                            </div>
+                        </div>
                     </Link>
                     <div className={animeS.titles}>{items?.names.ru}</div>
                     <div className={animeS.gen}>Жанры:</div>

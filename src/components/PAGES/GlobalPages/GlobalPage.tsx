@@ -1,98 +1,292 @@
-import { ChangeEvent, FC, FormEvent, useContext, useState } from 'react';
+import { FC, FormEvent, useContext, useEffect, useState } from 'react';
 import Header from '../../Header/Header';
-import GlobalS from './GlobalPage.module.scss';
 import StartWatchNow from '../../StartWatchNow/StartWatchNow';
-import { Route, Routes, useNavigate } from 'react-router-dom';
 import SingleAnimeItem from '../../SingleAnimeItem/SingleAnimeItem';
 import Footer from '../../Footer/Footer';
 import NotFoundAPage from '../NotFoundAPage/NotFoundAPage';
-import CategoryPage from '../Category/CategoryPage';
 import Modal from '../../Modal/Modal';
-import { useGetGenresQuery } from '../../../API/animeData';
 import CustomButton from '../../UI/Button/CustomButton';
+import SignIn from '../Sing/SignIn';
+import CategoryPage from '../Category/CategoryPage';
+import SchedulePage from '../SchedulePage/SchedulePage';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { isVisibleContext } from '../../../Context/Visible';
+import { useGetGenresQuery } from '../../../API/animeData';
+import { BiReset } from 'react-icons/bi';
+import GlobalS from './GlobalPage.module.scss';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
+import { delateStorage } from '../../../redux/CategorySlice';
+import OwnUserProfile from '../Profile/OwnUserProfile';
+import Select from '../../UI/Select/Select';
+import { menuContext } from '../../../Context/Menu';
+import Navigation from '../../Navigation/Navigation';
+import TheProject from '../ShowNurmeProjectPage/TheProject';
+import unknownUser from '../../icons/unknownUser.jpg';
+import Result from '../ResultSearchPage/Result';
+import MobileRegis from '../Sing/MobileRegis/MobileRegis';
+import { Link } from 'react-router-dom';
+
 const GlobalPage: FC = () => {
+    const menuCon = useContext(menuContext);
+    const [windowCurrent, setWindowCurrent] = useState<number>(0);
+    if (!menuCon) throw new Error('error menu context');
+
+    const { menu, setMenu } = menuCon;
+
+    const [selectedCurrent, setSelectredCurrent] = useState<string | number>(
+        'Выберете'
+    );
+
+    const dispatch = useAppDispatch();
     const { data: genresArray } = useGetGenresQuery({});
+
     const contextVis = useContext(isVisibleContext);
     if (!contextVis) {
         throw new Error('context not have');
     }
     const { isVisible, setIsVisible } = contextVis;
+
     const currentDateYear = new Date().getFullYear();
+
     const startYears = 1995;
+    const startSelectYears = 2013;
+    const endYears = currentDateYear;
     const listYearsSort = [];
+    const currentLocation = useLocation();
     for (let i = startYears; i <= currentDateYear; i++) {
         listYearsSort.push(i);
     }
-    const [genres, setGenres] = useState<string | null | undefined>('Комедия');
-    const [year, setYears] = useState<string | null>('2015');
+    const [genres, setGenres] = useState<string[]>([]);
+    const [startEndYears, setStartEndYears] = useState<{
+        start: number;
+        end: number;
+    }>({
+        start: startSelectYears,
+        end: endYears,
+    });
+    const [state, setState] = useState<number[]>([]);
+
+    useEffect(() => {
+        const newYears = [];
+        for (
+            let yearsI = startEndYears.start;
+            yearsI <= startEndYears.end;
+            yearsI++
+        ) {
+            newYears.push(yearsI);
+        }
+        setState(newYears);
+    }, [startEndYears]);
 
     const navigate = useNavigate();
+
     const filterCategory = (e: FormEvent) => {
         e.preventDefault();
         setIsVisible(false);
-        navigate(`/category?year=${year}&genre=${genres}`);
+        dispatch(delateStorage([]));
+        navigate(`/category?year=${state}&genre=${genres}`);
     };
+
+    const genresFilter = (selectGenres: string) => {
+        const filtered = genres.some(sGenre => sGenre === selectGenres);
+        if (!filtered && selectGenres !== 'Не выбрано')
+            setGenres(currentsGenres => [...currentsGenres, selectGenres]);
+    };
+
+    const selectedEndAndStartYears2 = (value: number, type: string) => {
+        setStartEndYears(year => ({
+            ...year,
+            [type]: Number(value),
+        }));
+    };
+
+    const delateSelectedGenres = (g: string) => {
+        const addToGenres = genres.filter(sort => sort !== g);
+        setGenres(addToGenres);
+    };
+
+    const handleOptionChange = (newValue: string | number, type?: string) => {
+        if (typeof newValue === 'string') {
+            genresFilter(newValue);
+        } else if (typeof newValue === 'number' && type) {
+            selectedEndAndStartYears2(newValue, type);
+        }
+    };
+    const changeCurrent = (current: string) => {
+        setSelectredCurrent(current);
+    };
+
+    const { userId } = useAppSelector(state => state.auth);
+
+    useEffect(() => {
+        const win = () => {
+            setWindowCurrent(innerWidth);
+            if (windowCurrent < 1216) setMenu(false);
+        };
+        win();
+        addEventListener('resize', win);
+        return () => {
+            removeEventListener('resize', win);
+        };
+    }, []);
+
+    const photoProfile = localStorage.getItem('photoProfileNurme');
+    const showPrifile = !currentLocation.pathname.startsWith('/profile');
+    const showProject = !currentLocation.pathname.startsWith('/');
 
     return (
         <div className={GlobalS.global}>
             <Header />
             {isVisible ? (
                 <Modal
+                    maxWidth={500}
                     onClick={() => setIsVisible(false)}
                     children={
-                        <div className={`${GlobalS.category} dfd`}>
+                        <div className={`${GlobalS.category} `}>
                             <span className={GlobalS.sortT}>
-                                Сортировать по котогориям
+                                Сортировать по категориям
                             </span>
+                            <div className={`${GlobalS.selected} `}>
+                                <div
+                                    className={`${GlobalS.selectedGenres} scrollOpacity`}
+                                >
+                                    <div style={{ fontSize: 15 }}>Выбрано:</div>
+                                    {genres.length !== 0 ? (
+                                        genres.map(genre => (
+                                            <span key={genre}>
+                                                {genre}
+                                                <span
+                                                    onClick={() =>
+                                                        delateSelectedGenres(
+                                                            genre
+                                                        )
+                                                    }
+                                                >
+                                                    x
+                                                </span>
+                                            </span>
+                                        ))
+                                    ) : (
+                                        <div
+                                            style={{
+                                                width: '55%',
+                                                fontSize: 16,
+                                            }}
+                                        >
+                                            (Пусто)
+                                        </div>
+                                    )}
+                                </div>
+                                <div
+                                    className={GlobalS.resetGenres}
+                                    onClick={() => setGenres([])}
+                                >
+                                    сбросить
+                                    <BiReset />
+                                </div>
+                            </div>
                             <form onSubmit={filterCategory}>
-                                <select
-                                    className={GlobalS.category}
-                                    onChange={(
-                                        e: ChangeEvent<HTMLSelectElement>
-                                    ) => setGenres(e.target.value)}
-                                >
-                                    {genresArray?.map(genre => (
-                                        <option value={genre} key={genre}>
-                                            {genre}
-                                        </option>
-                                    ))}
-                                </select>
-                                <select
-                                    className={GlobalS.category}
-                                    onChange={(
-                                        e: ChangeEvent<HTMLSelectElement>
-                                    ) => setYears(e.target.value.toString())}
-                                >
-                                    {listYearsSort.map(years => (
-                                        <option value={years} key={years}>
-                                            {years}г
-                                        </option>
-                                    ))}
-                                </select>
-                                <div className={GlobalS.button}>
-                                    <CustomButton
-                                        type='submit'
-                                        theText='Готово'
+                                <span className={GlobalS.titleC}>Жанры:</span>
+                                <div className='mtAndMtOprion'>
+                                    <Select
+                                        option={genresArray}
+                                        selectedOption={selectedCurrent}
+                                        onOptionChange={handleOptionChange}
+                                        onChangeCurrent={changeCurrent}
                                     />
+                                </div>
+
+                                <div className='mtAndMtOprion'>
+                                    <Select
+                                        type={'start'}
+                                        option={listYearsSort}
+                                        selectedOption={startEndYears.start}
+                                        onOptionChange={handleOptionChange}
+                                    />
+                                </div>
+
+                                <div className='mtAndMtOprion'>
+                                    <Select
+                                        type={'end'}
+                                        option={listYearsSort}
+                                        selectedOption={startEndYears.end}
+                                        onOptionChange={handleOptionChange}
+                                    />
+                                </div>
+                                <div className={GlobalS.button}>
+                                    <span>
+                                        <CustomButton
+                                            type='submit'
+                                            theText='Готово'
+                                        />
+                                    </span>
                                 </div>
                             </form>
                         </div>
                     }
                 />
             ) : null}
-            <div className={GlobalS.innerGlobalP}>
+            {menu && (
+                <Modal onClick={() => setMenu(false)} maxWidth={500}>
+                    <div className={`${GlobalS.menu} `}>
+                        <div className={GlobalS.wrapper}>
+                            <div className={GlobalS.avatar}>
+                                <Link to={userId ? '/profile' : '/route-regis'}>
+                                    <img
+                                        src={photoProfile || unknownUser}
+                                        alt='Profile User'
+                                    />
+                                </Link>
+                            </div>
+                            <Navigation />
+                        </div>
+                    </div>
+                    <div className={GlobalS.footer}>
+                        Nur<span>Bo</span>
+                    </div>
+                </Modal>
+            )}
+
+            <div
+                className={`${GlobalS.innerGlobalP} ${
+                    showPrifile || showProject ? 'max-w' : ''
+                } `}
+            >
                 <Routes>
                     <Route
                         path='/right-now/title/:id'
                         element={<SingleAnimeItem />}
                     />
+                    <Route
+                        path='/schedule/title/:id'
+                        element={<SingleAnimeItem />}
+                    />
                     <Route path='/right-now' element={<StartWatchNow />} />
                     <Route path='/category' element={<CategoryPage />} />
+                    <Route
+                        path='/category/title/:id'
+                        element={<SingleAnimeItem />}
+                    />
+                    <Route path='/auth' element={<SignIn />} />
+                    {/* Новый маршрут для авторизации */}
+                    <Route path='/schedule' element={<SchedulePage />} />
+                    <Route path='/profile' element={<OwnUserProfile />} />
+                    <Route
+                        path='/profile/title/:id'
+                        element={<SingleAnimeItem />}
+                    />
+                    <Route path='/title/:id' element={<SingleAnimeItem />} />
+                    <Route path='/result' element={<Result />} />
+                    <Route path='/result/:id' element={<Result />} />
+                    <Route
+                        path='/result/:title/:id'
+                        element={<SingleAnimeItem />}
+                    />
+                    <Route path='/route-regis' element={<MobileRegis />} />
+                    <Route path='/' element={<TheProject />} />
                     <Route path='*' element={<NotFoundAPage />} />
                 </Routes>
             </div>
-
             <Footer />
         </div>
     );

@@ -1,0 +1,18 @@
+.result {
+    & .text {
+        margin-bottom: 30px;
+        font-size: 25px;
+        @media screen and (max-width: 920px) {
+            font-size: 20px;
+        }
+        @media screen and (max-width: 397px) {
+            font-size: 16px;
+        }
+    }
+    .add {
+        margin-top: 30px;
+        & span {
+            width: 90px;
+        }
+    }
+}

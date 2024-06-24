@@ -1,0 +1,70 @@
+.regis {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    .auth {
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(32px);
+        border-radius: 15px;
+
+        width: 500px;
+        .data {
+            font-family: 'RobotoBold', sans-serif;
+            text-align: center;
+            margin: 40px 15px 0 15px;
+            .error {
+                color: red;
+                margin-bottom: 20px;
+                & span {
+                    color: green;
+                }
+            }
+            .t {
+                font-size: 27px;
+                margin-bottom: 30px;
+                display: block;
+                font-family: 'RobotoBold', sans-serif;
+            }
+            & input {
+                width: 100%;
+                margin-bottom: 20px;
+                color: white;
+                outline: none;
+                background: rgba(186, 70, 70, 0.12);
+                padding: 10px 0 10px 0;
+                border: none;
+                border-radius: 10px;
+                font-size: 22px;
+                &:hover {
+                    background: rgba(255, 255, 255, 0.2);
+                }
+            }
+            .notAcc {
+                font-size: 16px;
+                margin-top: 20px;
+                & a {
+                    text-decoration: underline;
+                    &:hover {
+                        opacity: 0.7;
+                    }
+                }
+                & p {
+                    margin-top: 20px;
+                    color: yellow;
+                    font-family: 'RobotoMedium', sans-serif;
+                    opacity: 0.7;
+                }
+            }
+            .btn {
+                display: flex;
+                justify-content: center;
+                & span {
+                    height: 40px;
+                    width: 140px;
+                }
+            }
+            padding-bottom: 20px;
+        }
+    }
+}
