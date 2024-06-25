@@ -21,7 +21,6 @@ import { FaFileCirclePlus } from 'react-icons/fa6';
 import { pack } from '../../PackImg/Packs';
 import { IoArrowBackSharp } from 'react-icons/io5';
 import { AvatarPacks } from '../../PackImg/PackAvatar';
-import { yellow } from '@mui/material/colors';
 const OwnUserProfile = () => {
     const nameNurme = localStorage.getItem('nameInNurme');
     const emailNurme = localStorage.getItem('emailInNurme');
@@ -36,7 +35,11 @@ const OwnUserProfile = () => {
         email: emailNurme ? emailNurme : '',
         name: nameNurme ? nameNurme : '',
     });
-
+    const { userId } = useAppSelector(state => state.auth);
+    const session = userId;
+    const { data, isError, isLoading } = useGetToFavoritesQuery(
+        session ? { session } : skipToken
+    );
     const [genderCurrent, setGenderCurrent] = useState(genderNurme ?? '');
     const [photoForProfile, setPhotoForProfile] = useState('');
     const [previewFile, setPreviewFile] = useState<string | null>();
@@ -69,7 +72,6 @@ const OwnUserProfile = () => {
         photo: false,
         gender: false,
     });
-    console.log(isTypeing.name);
 
     const [testWarning, setTestWarning] = useState<{
         nameW: string;
@@ -82,7 +84,7 @@ const OwnUserProfile = () => {
     });
 
     const dis = useAppDispatch();
-    const { userId } = useAppSelector(state => state.auth);
+
     const { fullDataAboutUser } = useAppSelector(state => state.auth);
     const comeBack = useNavigate();
 
@@ -96,11 +98,6 @@ const OwnUserProfile = () => {
         dis(removeAcc());
         localStorage.removeItem('photoProfileNurme');
     };
-
-    const session = userId;
-    const { data, isError } = useGetToFavoritesQuery(
-        session ? { session } : skipToken
-    );
 
     const goEdit = () => {
         if (dataUserInfo.email.length <= 40 && dataUserInfo.name.length <= 30) {
@@ -266,7 +263,6 @@ const OwnUserProfile = () => {
             removeEventListener('resize', sizeWindow);
         };
     }, []);
-    console.log(innerWindowWidth);
 
     if (userId === null) {
         comeBack('/right-now');
@@ -594,9 +590,16 @@ const OwnUserProfile = () => {
                         animate={{ opacity: 1 }}
                         initial={{ opacity: 0 }}
                     >
-                        {data && data.list?.length <= 0 ? (
+                        {isLoading ? (
+                            <div className='dfc'>
+                                <Loading />
+                            </div>
+                        ) : data && data.list?.length <= 0 ? (
                             <div>
-                                <div className={profileS.notHaveFavorite}>
+                                <div
+                                    className={profileS.notHaveFavorite}
+                                    translate='no'
+                                >
                                     К сожелению вы сохранили ничего
                                 </div>
                             </div>

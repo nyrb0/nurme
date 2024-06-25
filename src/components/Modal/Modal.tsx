@@ -23,7 +23,11 @@ const Modal: FC<ModalProps> = ({
         >
             <div className={modalS.wrapper} style={{ maxWidth: maxWidth }}>
                 {isVisibleX && (
-                    <button onClick={onClick} className={modalS.button}>
+                    <button
+                        onClick={onClick}
+                        className={modalS.button}
+                        translate='no'
+                    >
                         X
                     </button>
                 )}

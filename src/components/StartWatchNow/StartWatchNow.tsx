@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState, useCallback } from 'react';
 import rightNowS from './StartWatchNow.module.scss';
 import { useGetUpdatesAnimeQuery } from '../../API/animeData';
 import ToWatch from '../SingleAnimeItem/ToWatch/ToWatch';
@@ -6,7 +6,6 @@ import { FaLongArrowAltDown } from 'react-icons/fa';
 import { Title } from '../../types/UpdateA';
 import Loading from '../Warning/Loading';
 import Error from '../Warning/Error';
-import Changes from '../Changes/Changes';
 
 const StartWatchNow: FC = () => {
     const [page, setPage] = useState(1);
@@ -31,37 +30,37 @@ const StartWatchNow: FC = () => {
         }
     }, [data]);
 
-    const moreItem = () => {
+    const moreItem = useCallback(() => {
         setPage(thePage => thePage + 1);
-    };
+    }, []);
+
     if (isLoading && page === 1) {
         return (
             <div className={rightNowS.warning}>
-                <Loading />;
+                <Loading />
             </div>
         );
     }
+
     if (isError) {
         return (
             <div className={rightNowS.warning}>
-                <Error
-                    children={
-                        <>
-                            Упс,произашла ошибка
-                            <div>Попробуйте перезагрузить</div>
-                        </>
-                    }
-                />
+                <Error>
+                    <>
+                        Упс, произошла ошибка
+                        <div>Попробуйте перезагрузить</div>
+                    </>
+                </Error>
             </div>
         );
     }
+
     return (
         <div className={`${rightNowS.content} fade-in`}>
             <div className={rightNowS.fullContent}>
                 <div className={`${rightNowS.re} column`}>
                     <ToWatch watch={animeList} />
                 </div>
-                {/* <Changes /> */}
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'center' }}>

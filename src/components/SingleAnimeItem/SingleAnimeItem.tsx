@@ -24,6 +24,7 @@ import { skipToken } from '@reduxjs/toolkit/query';
 import Modal from '../Modal/Modal';
 import { FaArrowCircleLeft } from 'react-icons/fa';
 import { FaArrowCircleRight } from 'react-icons/fa';
+import l from '../icons/pngwing.com.png';
 interface SingleAnimeItemProps {}
 const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
     const { id } = useParams<{ id: string }>();
@@ -40,6 +41,7 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
     const [normalizedValue, setNormalizedValue] = useState<number>(
         normalize(stateRating, 0, 2042, 0, 10)
     );
+    const [awaitLoading, setAwaitLoading] = useState(true);
 
     const [isScrolledLeft, setIsScrolledLeft] = useState(true);
     const [isScrolledRight, setIsScrolledRight] = useState(false);
@@ -108,7 +110,7 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
     const handleSimilarAnimeClick = (id: string) => {
         navigate(`/right-now/title/${id}`);
     };
-    console.log(warningFavorite);
+
     const searchFavorite = addedFa?.list.some(f => f.id === single?.id);
 
     const delateAndAddFavorite = async () => {
@@ -167,14 +169,23 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
     useEffect(() => {
         handleScroll();
     }, []);
-    console.log(isScrolledRight, 'rigth');
-    if (isLoading && loadingSimilar) {
+
+    useEffect(() => {
+        if (isLoading) {
+            setTimeout(() => {
+                setAwaitLoading(false);
+            }, 2000);
+        }
+    }, [isLoading]);
+
+    if (awaitLoading) {
         return (
             <div className={'warning'}>
                 <Loading />
             </div>
         );
     }
+
     if (isError) {
         return (
             <div className='warning'>
@@ -182,7 +193,6 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
             </div>
         );
     }
-
     return (
         <section className={`fade-in ${showPrifile ? '' : 'max-w'}`}>
             <ThePath path={roadMap} />
@@ -376,7 +386,16 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
                                 size={40}
                             ></FaArrowCircleRight>
                         </div>
-                    ) : null}
+                    ) : (
+                        <div className={`${singleS.emptySimilar} dfc`}>
+                            <div className={singleS.empty}>
+                                <span>
+                                    <div>(Пусто)</div>
+                                </span>
+                                <img src={l} alt='L' />
+                            </div>
+                        </div>
+                    )}
                 </div>
             </div>
         </section>

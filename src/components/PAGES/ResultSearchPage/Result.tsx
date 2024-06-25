@@ -33,7 +33,6 @@ const Result = () => {
             });
         }
     }, [data, isLoading, page]);
-    console.log(data);
     const addResult = () => {
         if (page < limitPage) {
             setPage(prevPage => prevPage + 1);

@@ -23,14 +23,12 @@ const CategoryPage = () => {
     const [cate, setCate] = useState<Title[]>([]);
     const dispatch = useAppDispatch();
     const sele = useAppSelector(state => state.catego);
-    console.log(sele, 'lkfk');
+
     useEffect(() => {
         if (category) {
             dispatch(addToStorage(category.list));
         }
     }, [category]);
-
-    console.log(cate);
 
     const addToCate = () => {
         setPage(page + 1);

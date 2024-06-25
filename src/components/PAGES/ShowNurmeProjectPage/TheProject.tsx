@@ -28,7 +28,7 @@ const TheProject = () => {
     const getShowAnimeRibbon = async (state: any, page: number) => {
         try {
             const changes = await axios.get(
-                `${BASEURL}title/changes?limit=10&page=${page}`
+                `${BASEURL}title/changes?limit=9&page=${page}`
             );
             state(changes.data);
         } catch (e) {
@@ -128,9 +128,9 @@ const TheProject = () => {
                     transition={{ delay: 1 }}
                 >
                     Салам! Добро пожаловать <br /> в наш проект{' '}
-                    <span>
+                    <span translate='no'>
                         Nur<span>me</span>
-                    </span>{' '}
+                    </span>
                 </motion.div>
                 <motion.div
                     className={p.watchRightNow}

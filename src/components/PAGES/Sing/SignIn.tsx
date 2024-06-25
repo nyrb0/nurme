@@ -13,7 +13,6 @@ const SignIn = () => {
     const dis = useAppDispatch();
     const { userId } = useAppSelector(state => state.auth);
     const backRoute = useNavigate();
-    console.log(userId);
     const regis = (e: FormEvent) => {
         e.preventDefault();
         dis(loginId({ valueEmailName, valuePassword }));

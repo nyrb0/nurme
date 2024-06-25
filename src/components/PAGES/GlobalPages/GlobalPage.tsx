@@ -266,13 +266,13 @@ const GlobalPage: FC = () => {
                     <div className={`${GlobalS.i} df`}>
                         <span>
                             {icons.map((ic, i) => (
-                                <a href={urls[i]} target='_blank'>
+                                <a href={urls[i]} target='_blank' key={i}>
                                     <span>{ic}</span>
                                 </a>
                             ))}
                         </span>
                     </div>
-                    <div className={GlobalS.footer}>
+                    <div className={GlobalS.footer} translate='no'>
                         Nur<span>me</span>
                     </div>
                 </Modal>
@@ -292,28 +292,34 @@ const GlobalPage: FC = () => {
                         path='/schedule/title/:id'
                         element={<SingleAnimeItem />}
                     />
-                    <Route path='/right-now' element={<StartWatchNow />} />
-                    <Route path='/category' element={<CategoryPage />} />
                     <Route
                         path='/category/title/:id'
                         element={<SingleAnimeItem />}
                     />
-                    <Route path='/auth' element={<SignIn />} />
-                    {/* Новый маршрут для авторизации */}
-                    <Route path='/schedule' element={<SchedulePage />} />
-                    <Route path='/profile' element={<OwnUserProfile />} />
                     <Route
                         path='/profile/title/:id'
                         element={<SingleAnimeItem />}
                     />
-                    <Route path='/title/:id' element={<SingleAnimeItem />} />
-                    <Route path='/result' element={<Result />} />
-                    <Route path='/result/:id' element={<Result />} />
                     <Route
                         path='/result/:title/:id'
                         element={<SingleAnimeItem />}
                     />
+                    <Route
+                        path='/search/:genre/:id'
+                        element={<SingleAnimeItem />}
+                    />
+
+                    <Route path='/title/:id' element={<SingleAnimeItem />} />
+                    <Route path='/result/:id' element={<Result />} />
+
+                    <Route path='/right-now' element={<StartWatchNow />} />
+                    <Route path='/category' element={<CategoryPage />} />
+                    <Route path='/auth' element={<SignIn />} />
+                    <Route path='/schedule' element={<SchedulePage />} />
+                    <Route path='/profile' element={<OwnUserProfile />} />
+                    <Route path='/result' element={<Result />} />
                     <Route path='/search' element={<SearchGenre />} />
+                    {/* Новый маршрут для авторизации */}
                     <Route path='/route-regis' element={<MobileRegis />} />
                     <Route path='/' element={<TheProject />} />
                     <Route path='*' element={<NotFoundAPage />} />

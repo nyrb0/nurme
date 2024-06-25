@@ -10,7 +10,7 @@ import AnimeItem from '../../AnimeItem/AnimeItem';
 const SearchGenre = () => {
     const [result, setResult] = useState<Title[]>([]);
     const [page, setPage] = useState<number>(1);
-    console.log(page);
+
     const [searchParams] = useSearchParams();
     const genre = searchParams.get('genre') ?? '';
     const limit = 15;
@@ -19,8 +19,7 @@ const SearchGenre = () => {
         page,
         limit,
     });
-    console.log(data);
-    console.log(result);
+
     useEffect(() => {
         if (data && data.list) {
             setResult(prevResult => {
@@ -35,7 +34,6 @@ const SearchGenre = () => {
     const addResult = () => {
         setPage(prevPage => prevPage + 1);
     };
-    console.log(page);
 
     if (isLoading) {
         return (

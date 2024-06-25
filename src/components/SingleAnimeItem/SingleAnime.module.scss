@@ -278,6 +278,24 @@ section {
                 }
             }
         }
+        .emptySimilar {
+            height: 200px;
+            font-size: 25px;
+            font-family: 'RobotoBold', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .empty {
+                & span {
+                    text-align: center;
+                }
+                & img {
+                    margin-top: 20px;
+                    width: 200px;
+                }
+            }
+        }
     }
 
     backdrop-filter: blur(32px);

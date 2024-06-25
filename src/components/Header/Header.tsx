@@ -36,7 +36,6 @@ const Header: FC = () => {
             dis(pushToData(userInfo));
         }
     }, [userInfo]);
-    console.log('renders');
     useEffect(() => {
         const handleSizeWin = () => {
             setWindowWidth(innerWidth);
@@ -57,6 +56,7 @@ const Header: FC = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5 }}
+                    translate='no'
                 >
                     <Link to={'/'}>
                         {windowWidth >= 390 ? (
@@ -64,7 +64,7 @@ const Header: FC = () => {
                                 Nur<span>me</span>
                             </>
                         ) : (
-                            <span>N</span>
+                            <span translate='no'>N</span>
                         )}
                     </Link>
                 </motion.div>

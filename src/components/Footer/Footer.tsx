@@ -33,7 +33,7 @@ const Footer = () => {
             </a>
 
             <div className={footerS.innerFooter}>
-                <div className='namesAnimeCinema'>
+                <div className='namesAnimeCinema' translate='no'>
                     <Link to={'/right-now'}>
                         Nur<span>me</span>
                     </Link>
@@ -41,7 +41,7 @@ const Footer = () => {
 
                 <div className={`${footerS.social} df`}>
                     {icons.map((ic, index) => (
-                        <div className={footerS.i}>
+                        <div className={footerS.i} key={index}>
                             <a target='_black' href={urls[index]}>
                                 {ic}
                             </a>
