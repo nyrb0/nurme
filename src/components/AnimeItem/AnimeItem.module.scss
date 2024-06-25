@@ -10,6 +10,9 @@
     @media screen and (max-width: 347px) {
         width: 134px;
     }
+    @media screen and (max-width: 304px) {
+        width: 114px;
+    }
     .picture {
         .view {
             position: relative;
@@ -17,6 +20,7 @@
                 border-radius: 15px;
                 width: 224px;
                 height: 318px;
+                object-fit: cover;
                 @media screen and (max-width: 503px) {
                     width: 194px;
                     height: 288px;
@@ -28,6 +32,14 @@
                 @media screen and (max-width: 347px) {
                     width: 134px;
                     height: 208px;
+                }
+                @media screen and (max-width: 347px) {
+                    width: 134px;
+                    height: 208px;
+                }
+                @media screen and (max-width: 304px) {
+                    width: 114px;
+                    height: 188px;
                 }
                 transition: filter 0.8s ease;
             }
@@ -47,6 +59,10 @@
                 font-size: 18px;
                 opacity: 0;
                 transition: opacity 1s ease;
+                @media screen and (max-width: 347px) {
+                    height: 25px;
+                    font-size: 13px;
+                }
             }
             &:hover {
                 img {
@@ -71,30 +87,37 @@
         @media screen and (max-width: 347px) {
             width: 134px;
         }
+        @media screen and (max-width: 304px) {
+            width: 114px;
+        }
 
         overflow-x: auto;
         overflow-y: hidden;
         white-space: nowrap;
         &::-webkit-scrollbar {
-            /* для Webkit (Chrome, Safari, Opera) */
             display: none;
         }
-        scrollbar-width: none; /* для Firefox */
-        -ms-overflow-style: none; /* для IE и Edge */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
         .genre {
+            cursor: pointer;
             display: flex;
             align-items: center;
             background: rgba(149, 173, 220, 0.2);
             border-radius: 20px;
             padding: 3px 13px;
             margin: 5px;
-            height: 26px;
+            height: 20px;
             text-align: center;
+            transition: background 0.6s linear;
+            &:hover {
+                background: rgba(149, 173, 220, 0.7);
+            }
         }
     }
     .gen {
         padding: 10px 0 5px 0;
-        font-size: 20px;
+        font-size: 18px;
         @media screen and (max-width: 418px) {
             font-size: 16px;
         }
@@ -108,6 +131,9 @@
         }
         @media screen and (max-width: 347px) {
             width: 134px;
+        }
+        @media screen and (max-width: 304px) {
+            width: 114px;
         }
         margin-top: 5px;
         font-weight: 300;

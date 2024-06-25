@@ -22,6 +22,7 @@ import { pack } from '../../PackImg/Packs';
 import { IoArrowBackSharp } from 'react-icons/io5';
 import { AvatarPacks } from '../../PackImg/PackAvatar';
 import headImg from '../../PackImg/ThePack/pack6.gif';
+import { yellow } from '@mui/material/colors';
 const OwnUserProfile = () => {
     const nameNurme = localStorage.getItem('nameInNurme');
     const emailNurme = localStorage.getItem('emailInNurme');
@@ -103,63 +104,72 @@ const OwnUserProfile = () => {
     );
 
     const goEdit = () => {
-        if (isTypeing.email) {
-            if (dataUserInfo.email.length <= 40) {
-                if (dataUserInfo.email.endsWith('@gmail.com')) {
-                    if (dataUserInfo.email !== emailNurme) {
-                        localStorage.setItem(
-                            'emailInNurme',
-                            dataUserInfo.email
-                        );
-                        setTestWarning(w => ({ ...w, emailW: 'Готово' }));
-                        location.reload();
+        if (dataUserInfo.email.length <= 40 && dataUserInfo.name.length <= 30) {
+            if (isTypeing.email) {
+                if (dataUserInfo.email.length <= 40) {
+                    if (dataUserInfo.email.endsWith('@gmail.com')) {
+                        if (dataUserInfo.email.trim() !== emailNurme?.trim()) {
+                            localStorage.setItem(
+                                'emailInNurme',
+                                dataUserInfo.email
+                            );
+                            setTestWarning(w => ({ ...w, emailW: 'Готово' }));
+                            location.reload();
+                        } else
+                            setTestWarning(w => ({
+                                ...w,
+                                emailW: 'Измените email на новое',
+                            }));
                     } else
                         setTestWarning(w => ({
                             ...w,
-                            emailW: 'Измените email на новое',
+                            emailW: 'Неправильный email',
                         }));
                 } else
                     setTestWarning(w => ({
                         ...w,
-                        emailW: 'Неправильный email',
+                        emailW: 'Максимальная длина (40 символов)',
                     }));
-            } else
-                setTestWarning(w => ({
-                    ...w,
-                    email: 'Максимальная длина (40 символов)',
-                }));
-        }
-
-        if (isTypeing.name) {
-            if (dataUserInfo.name.length <= 30) {
-                if (dataUserInfo.name !== nameNurme) {
-                    setTestWarning(w => ({ ...w, nameW: 'Готово' }));
-                    localStorage.setItem('nameInNurme', dataUserInfo.name);
-                    location.reload();
+            }
+            if (isTypeing.name) {
+                if (dataUserInfo.name.length <= 30) {
+                    if (dataUserInfo.name.trim() !== nameNurme?.trim()) {
+                        setTestWarning(w => ({ ...w, nameW: 'Готово' }));
+                        localStorage.setItem('nameInNurme', dataUserInfo.name);
+                        location.reload();
+                    } else
+                        setTestWarning(w => ({
+                            ...w,
+                            nameW: 'Измените имя на новое',
+                        }));
                 } else
                     setTestWarning(w => ({
                         ...w,
-                        nameW: 'Измените имя на новое',
+                        nameW: 'Максимальная длина (30 символов)',
                     }));
-            } else
-                setTestWarning(w => ({
-                    ...w,
-                    nameW: 'Максимальная длина (30 символов)',
-                }));
-        }
-
-        if (date && isTypeing.date) {
-            localStorage.setItem('dateNurme', date);
-            processDate(date);
-            location.reload();
-        }
-        if (genderCurrent !== genderNurme) {
-            localStorage.setItem('genderNurme', genderCurrent);
-            location.reload();
-        }
-        if (isTypeing.photo) {
-            localStorage.setItem('photoProfileNurme', photoForProfile);
-            location.reload();
+            }
+            if (date && isTypeing.date) {
+                localStorage.setItem('dateNurme', date);
+                processDate(date);
+                location.reload();
+            }
+            if (genderCurrent !== genderNurme) {
+                localStorage.setItem('genderNurme', genderCurrent);
+                location.reload();
+            }
+            if (
+                isTypeing.photo &&
+                photoForProfile.trim() !== photoProfile?.trim()
+            ) {
+                localStorage.setItem('photoProfileNurme', photoForProfile);
+                location.reload();
+            }
+        } else {
+            setTestWarning(w => ({
+                ...w,
+                emailW: 'Максимальная длина (40 символов)',
+                nameW: 'Измените имя на новое',
+            }));
         }
     };
     useEffect(() => {
@@ -257,6 +267,7 @@ const OwnUserProfile = () => {
             removeEventListener('resize', sizeWindow);
         };
     }, []);
+    console.log(innerWindowWidth);
 
     if (userId === null) {
         comeBack('/right-now');
@@ -476,14 +487,7 @@ const OwnUserProfile = () => {
                 {mobileEdit && (
                     <Modal onClick={() => setModileEdit(false)} maxWidth={500}>
                         <div className={`${profileS.mobileEdit} `}>
-                            <div
-                                className={profileS.aboutMeMobile}
-                                style={
-                                    pointer
-                                        ? { border: '1px solid yellow' }
-                                        : {}
-                                }
-                            >
+                            <div className={profileS.aboutMeMobile}>
                                 <div>
                                     <div className={profileS.name}>
                                         <CustomInput
@@ -523,7 +527,19 @@ const OwnUserProfile = () => {
                                         />
                                     </div>
                                     <div className={profileS.born}>
-                                        <input type='date' />
+                                        <input
+                                            type='date'
+                                            onChange={(
+                                                e: ChangeEvent<HTMLInputElement>
+                                            ) => {
+                                                setIsTyping(state => ({
+                                                    ...state,
+                                                    date: true,
+                                                }));
+                                                setDate(e.target.value);
+                                            }}
+                                            value={date}
+                                        />
                                     </div>
                                     <div className={profileS.email}>
                                         <CustomInput
@@ -533,9 +549,14 @@ const OwnUserProfile = () => {
                                             ) => {
                                                 setIsTyping(state => ({
                                                     ...state,
-                                                    date: true,
+                                                    email: true,
                                                 }));
-                                                setDate(e.target.value);
+                                                setDataUserInfo(state => {
+                                                    return {
+                                                        ...state,
+                                                        email: e.target.value,
+                                                    };
+                                                });
                                             }}
                                             value={dataUserInfo.email}
                                         />
@@ -574,11 +595,19 @@ const OwnUserProfile = () => {
                         animate={{ opacity: 1 }}
                         initial={{ opacity: 0 }}
                     >
-                        <span>
-                            {data?.list.map(f => (
-                                <AnimeItem items={f} key={f.id} />
-                            ))}
-                        </span>
+                        {data && data.list?.length <= 0 ? (
+                            <div>
+                                <div className={profileS.notHaveFavorite}>
+                                    К сожелению вы сохранили ничего
+                                </div>
+                            </div>
+                        ) : (
+                            <span>
+                                {data?.list.map(f => (
+                                    <AnimeItem items={f} key={f.id} />
+                                ))}
+                            </span>
+                        )}
                     </motion.div>
                 </div>
             </div>
@@ -661,7 +690,7 @@ const OwnUserProfile = () => {
                                                         )
                                                     }
                                                 >
-                                                    Установитьы
+                                                    Установить
                                                 </span>
                                             )}
                                         </div>

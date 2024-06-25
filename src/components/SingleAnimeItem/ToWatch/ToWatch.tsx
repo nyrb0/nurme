@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import { AnimeUpdates, Title } from '../../types/UpdateA';
-import AnimeItem from '../AnimeItem/AnimeItem';
+import { AnimeUpdates, Title } from '../../../types/UpdateA';
+import AnimeItem from '../../AnimeItem/AnimeItem';
 interface ToWatchProps {
     watch: Title[] | undefined;
 }

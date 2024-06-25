@@ -15,7 +15,7 @@ const Error: FC<ErrorI> = ({ message, children, comeBack }) => {
     return (
         <section className={errorS.error}>
             <div>
-                <img width={300} src={Yagami} alt='Error' />
+                <img src={Yagami} alt='Error' />
             </div>
             <div className={errorS.wrapper}>
                 <div className={errorS.eContent}>

@@ -25,6 +25,10 @@ import unknownUser from '../../icons/unknownUser.jpg';
 import Result from '../ResultSearchPage/Result';
 import MobileRegis from '../Sing/MobileRegis/MobileRegis';
 import { Link } from 'react-router-dom';
+import SearchGenre from '../SearchGenre/SearchGenre';
+import { FaInstagram } from 'react-icons/fa';
+import { RiTelegramLine } from 'react-icons/ri';
+import { IoLogoTiktok } from 'react-icons/io5';
 
 const GlobalPage: FC = () => {
     const menuCon = useContext(menuContext);
@@ -130,6 +134,17 @@ const GlobalPage: FC = () => {
         };
     }, []);
 
+    const icons = [
+        <FaInstagram size={30} />,
+        <RiTelegramLine size={30} />,
+        <IoLogoTiktok size={30} />,
+    ];
+    const urls = [
+        'https://www.instagram.com/ny1bo/',
+        'https://www.tiktok.com/@ny1bo?_t=8nUhjfoOaYy&_r=1',
+        'https://t.me/programmingG1oup',
+    ];
+
     const photoProfile = localStorage.getItem('photoProfileNurme');
     const showPrifile = !currentLocation.pathname.startsWith('/profile');
     const showProject = !currentLocation.pathname.startsWith('/');
@@ -147,35 +162,44 @@ const GlobalPage: FC = () => {
                                 Сортировать по категориям
                             </span>
                             <div className={`${GlobalS.selected} `}>
-                                <div
-                                    className={`${GlobalS.selectedGenres} scrollOpacity`}
-                                >
-                                    <div style={{ fontSize: 15 }}>Выбрано:</div>
-                                    {genres.length !== 0 ? (
-                                        genres.map(genre => (
-                                            <span key={genre}>
-                                                {genre}
-                                                <span
-                                                    onClick={() =>
-                                                        delateSelectedGenres(
-                                                            genre
-                                                        )
-                                                    }
-                                                >
-                                                    x
+                                <div className={`${GlobalS.selectedGenres} `}>
+                                    <div
+                                        style={{
+                                            fontSize: 15,
+                                            marginBottom: 5,
+                                        }}
+                                    >
+                                        Выбрано:
+                                    </div>
+                                    <div
+                                        className={`${GlobalS.sc} scrollOpacity`}
+                                    >
+                                        {genres.length !== 0 ? (
+                                            genres.map(genre => (
+                                                <span key={genre}>
+                                                    {genre}
+                                                    <span
+                                                        onClick={() =>
+                                                            delateSelectedGenres(
+                                                                genre
+                                                            )
+                                                        }
+                                                    >
+                                                        x
+                                                    </span>
                                                 </span>
-                                            </span>
-                                        ))
-                                    ) : (
-                                        <div
-                                            style={{
-                                                width: '55%',
-                                                fontSize: 16,
-                                            }}
-                                        >
-                                            (Пусто)
-                                        </div>
-                                    )}
+                                            ))
+                                        ) : (
+                                            <div
+                                                style={{
+                                                    width: '100%',
+                                                    fontSize: 16,
+                                                }}
+                                            >
+                                                (Пусто)
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                                 <div
                                     className={GlobalS.resetGenres}
@@ -195,7 +219,6 @@ const GlobalPage: FC = () => {
                                         onChangeCurrent={changeCurrent}
                                     />
                                 </div>
-
                                 <div className='mtAndMtOprion'>
                                     <Select
                                         type={'start'}
@@ -204,7 +227,6 @@ const GlobalPage: FC = () => {
                                         onOptionChange={handleOptionChange}
                                     />
                                 </div>
-
                                 <div className='mtAndMtOprion'>
                                     <Select
                                         type={'end'}
@@ -241,8 +263,17 @@ const GlobalPage: FC = () => {
                             <Navigation />
                         </div>
                     </div>
+                    <div className={`${GlobalS.i} df`}>
+                        <span>
+                            {icons.map((ic, i) => (
+                                <a href={urls[i]} target='_blank'>
+                                    {ic}
+                                </a>
+                            ))}
+                        </span>
+                    </div>
                     <div className={GlobalS.footer}>
-                        Nur<span>Bo</span>
+                        Nur<span>me</span>
                     </div>
                 </Modal>
             )}
@@ -282,6 +313,7 @@ const GlobalPage: FC = () => {
                         path='/result/:title/:id'
                         element={<SingleAnimeItem />}
                     />
+                    <Route path='/search' element={<SearchGenre />} />
                     <Route path='/route-regis' element={<MobileRegis />} />
                     <Route path='/' element={<TheProject />} />
                     <Route path='*' element={<NotFoundAPage />} />

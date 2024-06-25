@@ -1,19 +1,35 @@
 @import url(./components/styles/resetToNull.css);
 :root {
+    --for-all-color: white;
+    --roboto-regular: 'RobotoRegular', sans-serif;
+}
+/* ШРИФТЫ */
+@font-face {
+    font-family: 'RobotoRegular';
+    src: url('./fonts/Roboto-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: block;
+}
+@font-face {
+    font-family: 'RobotoMedium';
+    src: url('./fonts/Roboto-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: block;
+}
+@font-face {
+    font-family: 'RobotoBold';
+    src: url('./fonts/Roboto-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: block;
+}
+
+body {
+    background-attachment: fixed;
     background: url('./components/icons/GeneralBg.png');
     background-size: cover;
-    --for-all-color: white;
-    background-attachment: fixed;
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
-    --roboto-regular: 'RobotoRegular', sans-serif;
-    --second-family: 'Inter', sans-serif;
-    --third-family: 'Kameron', sans-serif;
-}
-.App {
     font-size: 18px;
     color: white;
     font-family: var(--roboto-regular);
@@ -34,8 +50,6 @@
     align-items: center;
     flex-direction: column;
 }
-
-/* Определение переменных */
 :root {
     --text-color: white;
     --padding: 5px;
@@ -47,8 +61,6 @@
     justify-content: center;
     align-items: center;
 }
-
-/* Стилизация элемента select */
 select {
     background-color: #242424;
     color: var(--text-color);
@@ -66,7 +78,6 @@ select {
 select::-webkit-scrollbar {
     display: none; /* Safari и Chrome */
 }
-
 option {
     background-color: #242424;
     color: var(--text-color);
@@ -79,31 +90,6 @@ body {
     max-width: 1400px;
     margin: 0 auto;
 }
-
-@font-face {
-    font-family: 'RobotoRegular';
-    src: url('./fonts/Roboto-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'RobotoMedium';
-    src: url('./fonts/Roboto-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'RobotoLight';
-    src: url('./fonts/Roboto-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'RobotoBold';
-    src: url('./fonts/Roboto-Bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-}
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -112,33 +98,17 @@ body {
         opacity: 1;
     }
 }
-
 .scrollOpacity {
     ::-webkit-scrollbar {
         display: none;
     }
-
     scrollbar-width: none;
-
     -ms-overflow-style: none;
-    overflow-x: scroll;
 }
-
-/* Класс для применения анимации */
+/* Плавное появление страниц */
 .fade-in {
     animation: fadeIn 0.5s ease-in-out;
 }
-
-.fade-enter {
-    opacity: 0;
-    transform: translateY(-20px);
-}
-.fade-enter-active {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 500ms, transform 500ms;
-}
-
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -147,37 +117,56 @@ body {
         opacity: 1;
     }
 }
-
 .redBtn {
     background-color: red;
 }
 .grayBtn {
     background-color: #242424;
 }
-
 .warning {
     min-height: 60vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
 ::-webkit-scrollbar {
     width: 8px;
     background: transparent;
 }
-
-/* Трек полосы прокрутки */
 ::-webkit-scrollbar-track {
     background: transparent;
 }
-
 ::-webkit-scrollbar-thumb {
     background: red;
     border-radius: 10px;
 }
-
-/* Ползунок полосы прокрутки при наведении */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+}
+
+@keyframes music-animation {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes circle-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.musicBit {
+    animation: music-animation 0.6s infinite ease-in-out;
+}
+.circle {
+    animation: circle-animation 7s infinite linear;
 }

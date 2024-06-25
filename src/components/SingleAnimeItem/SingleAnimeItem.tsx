@@ -22,10 +22,8 @@ import {
 import Ratings from '../UI/Rating/Ratings';
 import { skipToken } from '@reduxjs/toolkit/query';
 import Modal from '../Modal/Modal';
-
 import { FaArrowCircleLeft } from 'react-icons/fa';
 import { FaArrowCircleRight } from 'react-icons/fa';
-
 interface SingleAnimeItemProps {}
 const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
     const { id } = useParams<{ id: string }>();
@@ -49,7 +47,6 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
     const { userId: session } = useAppSelector(state => state.auth);
 
     const [deleteFavorite] = useDeleteFavoriteMutation();
-    console.log(single);
     const genres = single?.genres;
     const { data: similar, isLoading: loadingSimilar } =
         useGetResultCategoryQuery({ genres });
@@ -104,7 +101,6 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
     const { data: addedFa, refetch } = useGetToFavoritesQuery(
         session ? { session } : skipToken
     );
-
     const currentLocation = useLocation();
 
     const showPrifile = !currentLocation.pathname.startsWith('/profile');
@@ -348,7 +344,7 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
                                 size={40}
                                 style={{
                                     fill: 'red',
-                                    opacity: isScrolledLeft ? 0.4 : 1,
+                                    opacity: isScrolledLeft ? 0.7 : 1,
                                 }}
                             ></FaArrowCircleLeft>
                             <div
@@ -373,7 +369,7 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
                             <FaArrowCircleRight
                                 style={{
                                     fill: 'red',
-                                    opacity: isScrolledRight ? 0.4 : 1,
+                                    opacity: isScrolledRight ? 0.7 : 1,
                                 }}
                                 className={singleS.right}
                                 onClick={scrollRight}

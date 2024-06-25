@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
 import footerS from './Footer.module.scss';
 import buttonArrow from '../icons/buttonArrow.png';
-import { HashRouter } from 'react-router-dom';
-import { HashLink } from 'react-router-hash-link';
+import { FaInstagram } from 'react-icons/fa';
+import { RiTelegramLine } from 'react-icons/ri';
+import { IoLogoTiktok } from 'react-icons/io5';
 const Footer = () => {
     const scrollToHead = (getId: string): void => {
         const el: HTMLElement | null = document.getElementById(getId);
@@ -11,6 +12,16 @@ const Footer = () => {
         }
     };
 
+    const icons = [
+        <FaInstagram size={30} />,
+        <RiTelegramLine size={30} />,
+        <IoLogoTiktok size={30} />,
+    ];
+    const urls = [
+        'https://www.instagram.com/ny1bo/',
+        'https://www.tiktok.com/@ny1bo?_t=8nUhjfoOaYy&_r=1',
+        'https://t.me/programmingG1oup',
+    ];
     return (
         <footer className={footerS.footer}>
             <a onClick={() => scrollToHead('head')}>
@@ -26,6 +37,16 @@ const Footer = () => {
                     <Link to={'/right-now'}>
                         Nur<span>me</span>
                     </Link>
+                </div>
+
+                <div className={`${footerS.social} df`}>
+                    {icons.map((ic, index) => (
+                        <div className={footerS.i}>
+                            <a target='_black' href={urls[index]}>
+                                {ic}
+                            </a>
+                        </div>
+                    ))}
                 </div>
             </div>
         </footer>

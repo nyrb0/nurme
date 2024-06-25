@@ -25,5 +25,15 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        .social {
+            padding-right: 15px;
+            .i {
+                padding: 5px;
+            }
+        }
     }
+}
+
+.icons {
+    width: 150px;
 }

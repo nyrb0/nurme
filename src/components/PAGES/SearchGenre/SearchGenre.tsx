@@ -1,44 +1,41 @@
-import { useSearchParams } from 'react-router-dom';
-import { useGetResultSearchQuery } from '../../../API/animeData';
-import AnimeItem from '../../AnimeItem/AnimeItem';
-import s from './Result.module.scss';
 import { useEffect, useState } from 'react';
-import { Title } from '../../../types/UpdateA';
+import genreSearch from '../ResultSearchPage/Result.module.scss';
 import CustomButton from '../../UI/Button/CustomButton';
 import Loading from '../../Warning/Loading';
+import { useSearchParams } from 'react-router-dom';
+import { useSearchGenreQuery } from '../../../API/animeData';
+import { Title } from '../../../types/UpdateA';
+import AnimeItem from '../../AnimeItem/AnimeItem';
 
-const Result = () => {
+const SearchGenre = () => {
     const [result, setResult] = useState<Title[]>([]);
     const [page, setPage] = useState<number>(1);
+    console.log(page);
     const [searchParams] = useSearchParams();
-    const title = searchParams.get('title') ?? '';
-    const limit = 10;
-    const { data, isFetching, isLoading } = useGetResultSearchQuery({
-        title,
-        limit,
+    const genre = searchParams.get('genre') ?? '';
+    const limit = 15;
+    const { data, isFetching, isLoading } = useSearchGenreQuery({
+        genre,
         page,
+        limit,
     });
-    const limitPage = data?.pagination.pages || 1;
-
+    console.log(data);
+    console.log(result);
     useEffect(() => {
         if (data && data.list) {
             setResult(prevResult => {
                 const newResults = data.list.filter(
                     newItem =>
-                        !prevResult.some(
-                            existingItem => existingItem.id === newItem.id
-                        )
+                        !prevResult.some(prevItem => prevItem.id === newItem.id)
                 );
-                return [...prevResult, ...newResults];
+                return prevResult.concat(newResults);
             });
         }
-    }, [data, isLoading, page]);
-    console.log(data);
+    }, [data, page]);
     const addResult = () => {
-        if (page < limitPage) {
-            setPage(prevPage => prevPage + 1);
-        }
+        setPage(prevPage => prevPage + 1);
     };
+    console.log(page);
 
     if (isLoading) {
         return (
@@ -49,8 +46,10 @@ const Result = () => {
     }
 
     return (
-        <div className={s.result}>
-            <span className={`${s.text} dfc`}>Результат поиска: "{title}"</span>
+        <div className={genreSearch.result}>
+            <span className={`${genreSearch.text} dfc`}>
+                Поиск по жанру: "{genre}"
+            </span>
             <div className='dfc'>
                 <div className='column'>
                     {result.map(i => (
@@ -58,9 +57,9 @@ const Result = () => {
                     ))}
                 </div>
             </div>
-            <div className={`${s.add} dfc`}>
+            <div className={`${genreSearch.add} dfc`}>
                 {!isFetching ? (
-                    page >= limitPage ? (
+                    result.length === 0 ? (
                         <div>(Пусто)</div>
                     ) : (
                         <span onClick={addResult}>
@@ -81,4 +80,4 @@ const Result = () => {
     );
 };
 
-export default Result;
+export default SearchGenre;

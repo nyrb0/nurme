@@ -36,7 +36,7 @@ const Header: FC = () => {
             dis(pushToData(userInfo));
         }
     }, [userInfo]);
-
+    console.log('renders');
     useEffect(() => {
         const handleSizeWin = () => {
             setWindowWidth(innerWidth);

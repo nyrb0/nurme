@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 import rightNowS from './StartWatchNow.module.scss';
 import { useGetUpdatesAnimeQuery } from '../../API/animeData';
-import ToWatch from '../ToWatch/ToWatch';
+import ToWatch from '../SingleAnimeItem/ToWatch/ToWatch';
 import { FaLongArrowAltDown } from 'react-icons/fa';
 import { Title } from '../../types/UpdateA';
 import Loading from '../Warning/Loading';

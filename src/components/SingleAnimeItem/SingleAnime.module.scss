@@ -1,5 +1,8 @@
 section {
     margin-top: 40px;
+    @media screen and (max-width: 423px) {
+        margin-top: 10px;
+    }
     .partContent {
         display: flex;
         & .photo {

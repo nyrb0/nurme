@@ -32,22 +32,28 @@ export const animeData = createApi({
             query: ({ page, limit }) =>
                 `title/updates?playlist_type=array&page=${page}&items_per_page=${limit}`,
         }),
+
         getTheTitle: builder.query<Title, ids>({
             query: ({ id }) => `title?id=${id}&playlist_type=array`,
         }),
+
         getResultSearch: builder.query<AnimeUpdates, titles>({
             query: ({ title, limit = 5, page = 1 }) =>
                 `/title/search?filter=id,code,names.ru,genres,type.episodes,status.code,player.episodes,player.episodes.last,posters,season.year&search=${title}&limit=${limit}&page=${page}`,
         }),
+
         getRandomItem: builder.query<Title, randomT>({
             query: () => `title/random`,
         }),
+
         getGenres: builder.query<[], any>({
             query: () => `genres`,
         }),
+
         getYears: builder.query<[], any>({
             query: () => `/years`,
         }),
+
         getResultCategory: builder.query<AnimeUpdates, categoty>({
             query: ({ genres, year, page = 1, limit = 10 }) => {
                 let sort =
@@ -57,12 +63,26 @@ export const animeData = createApi({
                 return `${sort}&page=${page}&items_per_page=${limit}`;
             },
         }),
+
         changes: builder.query<AnimeUpdates, any>({
             query: () => `title/changes`,
         }),
+
         sheduleList: builder.query<Root2[], any>({
             query: () =>
                 `title/schedule?filter=id,code,names.ru,genres,type.episodes,status.code,player.episodes,posters`,
+        }),
+
+        searchGenre: builder.query<
+            AnimeUpdates,
+            { genre: string; limit: number; page: number }
+        >({
+            query: ({ genre, page = 1, limit = 10 }) => {
+                if (!genre) {
+                    return '';
+                }
+                return `title/search?filter=id,code,names.ru,genres,type.episodes,status.code,player.episodes,player.episodes.last,posters,season.year&genres=${genre}&limit=${limit}&page=${page}`;
+            },
         }),
     }),
 });
@@ -78,4 +98,5 @@ export const {
     useGetResultCategoryQuery,
     useChangesQuery,
     useSheduleListQuery,
+    useSearchGenreQuery,
 } = animeData;

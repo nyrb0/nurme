@@ -13,14 +13,14 @@ import { MdMusicNote } from 'react-icons/md';
 import { MdMusicOff } from 'react-icons/md';
 import musicSound from './Sound/9MM x LOLI SHIGURE UI.mp3';
 import girlDance from './GifDance/shigure-goddess.gif';
+import Error from '../../Warning/Error';
 const TheProject = () => {
     const [animeRibbon1, setAnimeRibbon1] = useState<AnimeUpdates | null>(null);
     const [animeRibbon2, setAnimeRibbon2] = useState<AnimeUpdates | null>(null);
-
-    const [isPlay, setIsPlay] = useState(true);
+    const [error, setError] = useState<boolean>(false);
+    const [isPlay, setIsPlay] = useState<boolean>(true);
     const [loading, setLoading] = useState<boolean>(true);
     const audioRef = useRef<HTMLAudioElement>(null);
-    console.log(isPlay);
     useEffect(() => {
         getShowAnimeRibbon(setAnimeRibbon1, 9);
         getShowAnimeRibbon(setAnimeRibbon2, 4);
@@ -32,7 +32,8 @@ const TheProject = () => {
             );
             state(changes.data);
         } catch (e) {
-            console.error(e);
+            console.error('Error:', e);
+            setError(true);
         } finally {
             setLoading(false);
         }
@@ -48,23 +49,23 @@ const TheProject = () => {
             }
         }
     };
-
-    console.log(animeRibbon1);
     const repeat = [1, 3];
-
     const [musicIcon, setMusicIcon] = useState(false);
-
     const handleScroll = () => {
         const offsetTop = window.scrollY;
         const fixedPosition = 80;
-
         if (offsetTop > fixedPosition) {
             setMusicIcon(true);
         } else {
             setMusicIcon(false);
         }
     };
-
+    const scrollToTopAnime = (element: string) => {
+        const getElement: HTMLElement | null = document.getElementById(element);
+        if (getElement) {
+            getElement.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
@@ -79,21 +80,46 @@ const TheProject = () => {
         );
     }
 
+    if (error) {
+        return (
+            <div className='warning'>
+                <Error>
+                    <div>Упс,произашла ошибка</div>
+                    <div className={p.updatePage}>
+                        <span>
+                            <CustomButton
+                                theText='Перезагрузить'
+                                type='button'
+                                onClick={() => location.reload()}
+                            />
+                        </span>
+                    </div>
+                </Error>
+            </div>
+        );
+    }
     return (
         <div className={p.project}>
             <div
                 onClick={toggleMutedSound}
-                className={p.music}
+                className={`${p.music} element ${isPlay ? ' musicBit' : ''}`}
                 style={{
                     top: musicIcon ? '30px' : '127px',
                     transition: 'top 0.15s ease-in-out',
                 }}
             >
-                {isPlay ? <MdMusicNote size={30} /> : <MdMusicOff size={30} />}
-                <audio ref={audioRef} autoPlay loop>
-                    <source src={musicSound} />
-                </audio>
+                <div className={isPlay ? 'circle' : ''}>
+                    {isPlay ? (
+                        <MdMusicNote size={30} />
+                    ) : (
+                        <MdMusicOff size={30} />
+                    )}
+                    <audio ref={audioRef} autoPlay loop>
+                        <source src={musicSound} />
+                    </audio>
+                </div>
             </div>
+
             <div className={p.wrapper}>
                 <motion.div
                     className={p.welcome}
@@ -132,12 +158,16 @@ const TheProject = () => {
                     )}
                 </motion.div>
                 <motion.div
+                    onClick={() => scrollToTopAnime('popular')}
                     className={p.arrow}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.7 }}
                 >
-                    <MdKeyboardDoubleArrowDown size={70} />
+                    <MdKeyboardDoubleArrowDown
+                        size={70}
+                        style={{ cursor: 'pointer' }}
+                    />
                 </motion.div>
                 <motion.div
                     className={p.interesting}
@@ -152,6 +182,7 @@ const TheProject = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 2 }}
+                    id='popular'
                 >
                     {repeat.map(r => (
                         <div className={p.ribbon1} key={r}>
