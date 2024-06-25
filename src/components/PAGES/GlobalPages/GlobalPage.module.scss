@@ -116,6 +116,12 @@
     justify-content: center;
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.12);
+    transform: scale(0.95);
+    transition: transform 0.5s ease;
+    &:hover {
+        fill: red;
+        transform: scale(1);
+    }
     & a {
         padding: 5px;
     }

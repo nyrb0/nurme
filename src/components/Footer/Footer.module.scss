@@ -29,6 +29,11 @@
             padding-right: 15px;
             .i {
                 padding: 5px;
+                transform: scale(0.87);
+                transition: transform 0.5s ease;
+                &:hover {
+                    transform: scale(1);
+                }
             }
         }
     }

@@ -21,7 +21,6 @@ import { FaFileCirclePlus } from 'react-icons/fa6';
 import { pack } from '../../PackImg/Packs';
 import { IoArrowBackSharp } from 'react-icons/io5';
 import { AvatarPacks } from '../../PackImg/PackAvatar';
-import headImg from '../../PackImg/ThePack/pack6.gif';
 import { yellow } from '@mui/material/colors';
 const OwnUserProfile = () => {
     const nameNurme = localStorage.getItem('nameInNurme');
@@ -305,7 +304,7 @@ const OwnUserProfile = () => {
                             backgroundImage: `url(${
                                 headerImageStorage
                                     ? headerImageStorage
-                                    : headImg
+                                    : 'https://i.imgur.com/lpj7d2S.gif'
                             }`,
                         }}
                     ></motion.div>

@@ -267,7 +267,7 @@ const GlobalPage: FC = () => {
                         <span>
                             {icons.map((ic, i) => (
                                 <a href={urls[i]} target='_blank'>
-                                    {ic}
+                                    <span>{ic}</span>
                                 </a>
                             ))}
                         </span>

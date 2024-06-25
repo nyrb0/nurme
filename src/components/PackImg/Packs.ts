@@ -1,27 +1,13 @@
-import Pack1 from './ThePack/Pack1.webp';
-import Pack2 from './ThePack/Pack2.webp';
-import Pack3 from './ThePack/Pack3.webp';
-import Pack4 from './ThePack/Pack4.gif';
-import Pack5 from './ThePack/Pack5.gif';
-import Pack6 from './ThePack/pack6.gif';
-import Pack7 from './ThePack/pack 7.gif';
-import Pack8 from './ThePack/Pack8.gif';
-import Pack9 from './ThePack/Pack9.webp';
-import Pack10 from './ThePack/Pack10.gif';
-import Pack11 from './ThePack/Pack11.gif';
-import Pack12 from './ThePack/Pack12.gif';
-
 export const pack: string[] = [
-    Pack1,
-    Pack2,
-    Pack3,
-    Pack4,
-    Pack5,
-    Pack6,
-    Pack7,
-    Pack8,
-    Pack9,
-    Pack10,
-    Pack11,
-    Pack12,
+    'https://i.imgur.com/wHYkWkk.gif',
+    'https://i.imgur.com/U4Zvmwg.gif',
+    'https://i.imgur.com/M2DZoVo.gif',
+    'https://i.imgur.com/kzsbDFU.gif',
+    'https://i.imgur.com/lpj7d2S.gif',
+    'https://i.imgur.com/yfsU3fp.gif',
+    'https://i.imgur.com/Ur3FN5V.gif',
+    'https://i.imgur.com/7X5QCn3.gif',
+    'https://i.imgur.com/MWLk93s.gif',
+    'https://i.imgur.com/xfVJgcX.gif',
+    'https://i.imgur.com/tPelf7s.gif',
 ];
