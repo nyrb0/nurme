@@ -108,7 +108,7 @@ const TheProject = () => {
                     transition: 'top 0.15s ease-in-out',
                 }}
             >
-                <div className={isPlay ? 'circle' : ''}>
+                <div className={`${isPlay ? 'circle' : ''}`}>
                     {isPlay ? (
                         <MdMusicNote size={30} />
                     ) : (
@@ -127,8 +127,9 @@ const TheProject = () => {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1 }}
                 >
-                    Салам! Добро пожаловать <br /> в наш проект{' '}
+                    Салам! Добро пожаловать <br /> в наш проект
                     <span translate='no'>
+                        {' '}
                         Nur<span>me</span>
                     </span>
                 </motion.div>
@@ -164,10 +165,7 @@ const TheProject = () => {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.7 }}
                 >
-                    <MdKeyboardDoubleArrowDown
-                        size={70}
-                        style={{ cursor: 'pointer' }}
-                    />
+                    <MdKeyboardDoubleArrowDown size={70} />
                 </motion.div>
                 <motion.div
                     className={p.interesting}

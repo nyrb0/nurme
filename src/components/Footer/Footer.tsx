@@ -19,8 +19,8 @@ const Footer = () => {
     ];
     const urls = [
         'https://www.instagram.com/ny1bo/',
-        'https://www.tiktok.com/@ny1bo?_t=8nUhjfoOaYy&_r=1',
         'https://t.me/programmingG1oup',
+        'https://www.tiktok.com/@ny1bo?_t=8nUhjfoOaYy&_r=1',
     ];
     return (
         <footer className={footerS.footer}>
@@ -34,7 +34,7 @@ const Footer = () => {
 
             <div className={footerS.innerFooter}>
                 <div className='namesAnimeCinema' translate='no'>
-                    <Link to={'/right-now'}>
+                    <Link to={'/'}>
                         Nur<span>me</span>
                     </Link>
                 </div>
