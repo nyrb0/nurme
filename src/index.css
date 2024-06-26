@@ -28,6 +28,8 @@
 
 body{
   height: 100vh;
+    overscroll-behavior-y: none;
+
 }
 .App {
     font-family: var(--roboto-regular);
