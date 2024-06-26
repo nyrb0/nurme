@@ -159,13 +159,15 @@ const TheProject = () => {
                     )}
                 </motion.div>
                 <motion.div
-                    onClick={() => scrollToTopAnime('popular')}
                     className={p.arrow}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.7 }}
                 >
-                    <MdKeyboardDoubleArrowDown size={70} />
+                    <MdKeyboardDoubleArrowDown
+                        size={70}
+                        onClick={() => scrollToTopAnime('popular')}
+                    />
                 </motion.div>
                 <motion.div
                     className={p.interesting}
