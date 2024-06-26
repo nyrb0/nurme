@@ -26,14 +26,17 @@
     font-display: block;
 }
 
-body{
-  height: 100vh;
-    overscroll-behavior-y: none;
-
-}
-.App {
+body {
+    height: 100vh;
+    background-image: url('./components/icons/BG.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     font-family: var(--roboto-regular);
     color: white;
+    margin: 0;
+    padding: 0;
 }
 body {
     height: 100%;
