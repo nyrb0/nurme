@@ -34,15 +34,14 @@ body {
 .background {
     position: fixed;
     top: 0;
-    bottom: 0;
+    left: 0;
     z-index: -1;
     width: 100%;
-    height: 110vh;
+    height: 100vh;
     background-image: url('./components/icons/BG.webp');
-    background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
+    background-position: center center;
 }
 .df {
     display: flex;
