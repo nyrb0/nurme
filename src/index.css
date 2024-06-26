@@ -27,7 +27,7 @@
 }
 
 body {
-    height: 100vh;
+    height: 100%;
     font-family: var(--roboto-regular);
     color: white;
 }
