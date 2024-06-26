@@ -25,6 +25,10 @@
     font-style: normal;
     font-display: block;
 }
+
+body{
+  height: 100vh;
+}
 .App {
     font-family: var(--roboto-regular);
     color: white;
