@@ -155,7 +155,7 @@ const Header: FC = () => {
                 </motion.div>
 
                 {windowWidth >= 1217 ? (
-                    <>
+                    <div>
                         {' '}
                         <div className={headerS.menu}>
                             <Navigation />
@@ -193,9 +193,14 @@ const Header: FC = () => {
                                 </>
                             )}
                         </div>
-                    </>
+                    </div>
                 ) : (
-                    <div className='dfa'>
+                    <motion.div
+                        className='dfa'
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 1.3 }}
+                    >
                         <div className={headerS.avatar}>
                             <Link to={userD ? '/profile' : '/route-regis'}>
                                 <img
@@ -211,7 +216,7 @@ const Header: FC = () => {
                             size={30}
                             onClick={() => setMenu(true)}
                         />
-                    </div>
+                    </motion.div>
                 )}
             </div>
         </header>
