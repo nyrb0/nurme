@@ -155,7 +155,7 @@ const Header: FC = () => {
                 </motion.div>
 
                 {windowWidth >= 1217 ? (
-                    <div>
+                    <>
                         {' '}
                         <div className={headerS.menu}>
                             <Navigation />
@@ -193,7 +193,7 @@ const Header: FC = () => {
                                 </>
                             )}
                         </div>
-                    </div>
+                    </>
                 ) : (
                     <motion.div
                         className='dfa'

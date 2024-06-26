@@ -27,13 +27,15 @@
 }
 
 body {
-    background: url('./components/icons/BG.webp') no-repeat center center fixed;
+    background-image: url('./components/icons/BG.webp');
+    background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
     color: white;
     font-family: var(--roboto-regular);
     overflow: hidden;
 }
+
 .df {
     display: flex;
 }
