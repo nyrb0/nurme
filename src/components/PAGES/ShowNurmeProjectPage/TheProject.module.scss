@@ -2,7 +2,6 @@
     margin-top: 70px;
     overflow: hidden;
     .music {
-        cursor: auto;
         position: fixed;
         right: 20px;
         z-index: 99;
@@ -16,14 +15,6 @@
 
         outline: none; // Убираем outline по умолчанию
         transition: background-color 0.3s;
-
-        &:focus {
-            outline: none;
-        }
-
-        &:hover {
-            background-color: darkred; // Изменение фона при наведении
-        }
     }
     .wrapper {
         .welcome {

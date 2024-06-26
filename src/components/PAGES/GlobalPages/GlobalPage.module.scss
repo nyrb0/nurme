@@ -30,7 +30,7 @@
             padding-left: 10px;
 
             .sc {
-                min-height: 30px;
+                min-height: 34px;
                 min-width: 40px;
                 display: flex;
                 align-items: center;
@@ -129,6 +129,7 @@
     }
 }
 .footer {
+    margin-top: 10px;
     display: flex;
     justify-content: center;
     font-size: 40px;

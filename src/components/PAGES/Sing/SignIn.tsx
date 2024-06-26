@@ -43,6 +43,7 @@ const SignIn = () => {
                     <div className={style.data}>
                         <span className={style.t}>Войти в аккаунт</span>
                         <input
+                            placeholder='Имаил или почта'
                             type='text'
                             onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                 setValueEmailName(e.target.value)
@@ -50,6 +51,7 @@ const SignIn = () => {
                             value={valueEmailName}
                         />
                         <input
+                            placeholder='Пароль'
                             type='password'
                             onChange={(e: ChangeEvent<HTMLInputElement>) =>
                                 setValuePassword(e.target.value)

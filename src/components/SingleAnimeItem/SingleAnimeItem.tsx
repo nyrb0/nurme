@@ -25,6 +25,7 @@ import Modal from '../Modal/Modal';
 import { FaArrowCircleLeft } from 'react-icons/fa';
 import { FaArrowCircleRight } from 'react-icons/fa';
 import l from '../icons/pngwing.com.png';
+import { MdOutlineFullscreenExit } from 'react-icons/md';
 interface SingleAnimeItemProps {}
 const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
     const { id } = useParams<{ id: string }>();
@@ -45,7 +46,7 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
 
     const [isScrolledLeft, setIsScrolledLeft] = useState(true);
     const [isScrolledRight, setIsScrolledRight] = useState(false);
-
+    const [isFullDisplay, setIsFullDisplay] = useState(false);
     const { userId: session } = useAppSelector(state => state.auth);
 
     const [deleteFavorite] = useDeleteFavoriteMutation();
@@ -217,7 +218,31 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
                                 />
                             )}
                         </span>
+                        <div
+                            className={singleS.fulldisplay}
+                            onClick={() => setIsFullDisplay(true)}
+                        >
+                            <MdOutlineFullscreenExit size={25} />
+                        </div>
                     </div>
+
+                    {isFullDisplay && (
+                        <Modal
+                            onClick={() => setIsFullDisplay(false)}
+                            maxWidth={300}
+                        >
+                            <div className={singleS.img}>
+                                <div className={singleS.fullDis}>
+                                    <img
+                                        src={`${THE_BASE_URL}${single?.id}.webp`}
+                                        alt={single?.names.ru}
+                                    />
+                                </div>
+                                <span>{single?.names.ru}</span>
+                            </div>
+                        </Modal>
+                    )}
+
                     {warningFavorite ? (
                         <Modal
                             onClick={() => setWarningFavorite(false)}

@@ -141,8 +141,8 @@ const GlobalPage: FC = () => {
     ];
     const urls = [
         'https://www.instagram.com/ny1bo/',
-        'https://www.tiktok.com/@ny1bo?_t=8nUhjfoOaYy&_r=1',
         'https://t.me/programmingG1oup',
+        'https://www.tiktok.com/@ny1bo?_t=8nUhjfoOaYy&_r=1',
     ];
 
     const photoProfile = localStorage.getItem('photoProfileNurme');
@@ -272,9 +272,14 @@ const GlobalPage: FC = () => {
                             ))}
                         </span>
                     </div>
-                    <div className={GlobalS.footer} translate='no'>
+                    <Link
+                        to={'/'}
+                        className={GlobalS.footer}
+                        translate='no'
+                        onClick={() => setMenu(false)}
+                    >
                         Nur<span>me</span>
-                    </div>
+                    </Link>
                 </Modal>
             )}
 

@@ -1,7 +1,7 @@
 {
-    "name": "animeproject",
+    "name": "nurme",
     "private": true,
-    "version": "0.0.0",
+    "version": "1.5.5",
     "proxy": "https://www.anilibria.tv",
     "type": "module",
     "scripts": {

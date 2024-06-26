@@ -52,6 +52,9 @@
             .search {
                 color: white;
                 outline: none;
+                &::placeholder {
+                    color: white;
+                }
                 background: rgba(255, 255, 255, 0.12);
                 border: none;
                 font-size: 22px;
@@ -59,15 +62,14 @@
                 width: 100%;
                 border-radius: 10px;
                 background-image: url('../icons/search.png');
-                @media screen and (max-width: 418px) {
-                    background-size: 17px;
+                @media screen and (max-width: 50px) {
                     padding: 4px 40px 4px 10px;
                 }
 
                 background-repeat: no-repeat;
                 background-position: right 10px center;
                 @media screen and (max-width: 577px) {
-                    font-size: 15px;
+                    font-size: 13px;
                 }
                 &::-webkit-search-cancel-button {
                     -webkit-appearance: none;

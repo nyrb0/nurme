@@ -27,13 +27,13 @@
 }
 
 body {
-    background-attachment: fixed;
-    background: url('./components/icons/GeneralBg.png');
+    background: url('./components/icons/BG5.webp') no-repeat fixed center;
     background-size: cover;
-    font-size: 18px;
+    background-color: rgba(0, 0, 0, 1);
     color: white;
     font-family: var(--roboto-regular);
 }
+
 .df {
     display: flex;
 }

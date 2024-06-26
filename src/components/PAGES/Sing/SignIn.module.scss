@@ -12,7 +12,7 @@
         .data {
             font-family: 'RobotoBold', sans-serif;
             text-align: center;
-            margin: 40px 15px 0 15px;
+            padding: 40px 15px 0 15px;
             .error {
                 color: red;
                 margin-bottom: 20px;
@@ -32,12 +32,20 @@
                 color: white;
                 outline: none;
                 background: rgba(186, 70, 70, 0.12);
-                padding: 10px 0 10px 0;
+                padding: 10px 0 10px 10px;
                 border: none;
                 border-radius: 10px;
-                font-size: 22px;
+                font-size: 18px;
+                font-family: 'RobotoMedium', sans-serif;
                 &:hover {
                     background: rgba(255, 255, 255, 0.2);
+                }
+                &::placeholder {
+                    color: white;
+                    font-style: italic;
+                }
+                @media screen and (max-width: 659px) {
+                    font-size: 14px;
                 }
             }
             .notAcc {
