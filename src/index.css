@@ -27,9 +27,8 @@
 }
 
 body {
-    background: url('./components/icons/BG5.webp') no-repeat fixed center;
+    background: url('./components/icons/BG5.webp') no-repeat center center fixed;
     background-size: cover;
-    background-color: rgba(0, 0, 0, 1);
     color: white;
     font-family: var(--roboto-regular);
 }

@@ -105,7 +105,7 @@ const TheProject = () => {
                 className={`${p.music} element ${isPlay ? ' musicBit' : ''}`}
                 style={{
                     top: musicIcon ? '30px' : '127px',
-                    transition: 'top 0.15s ease-in-out',
+                    transition: 'top 0.4s ease-in-out',
                 }}
             >
                 <div className={`${isPlay ? 'circle' : ''}`}>
