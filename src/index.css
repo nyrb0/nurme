@@ -25,6 +25,12 @@
     font-style: normal;
     font-display: block;
 }
+
+body{
+  height: 100vh;
+    overscroll-behavior-y: none;
+
+}
 .App {
     font-family: var(--roboto-regular);
     color: white;
