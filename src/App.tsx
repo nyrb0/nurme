@@ -5,6 +5,7 @@ import { isVisibleContext } from './Context/Visible';
 import './components/styles/media.scss';
 import { useState } from 'react';
 import { menuContext } from './Context/Menu';
+import BackGround from './components/BackGround/BackGround';
 
 function App() {
     const [isVisible, setIsVisible] = useState(false);
@@ -14,7 +15,8 @@ function App() {
         <isVisibleContext.Provider value={{ isVisible, setIsVisible }}>
             <menuContext.Provider value={{ menu, setMenu }}>
                 <div className='App'>
-                    <div className='Inner_App'>
+                    <BackGround />
+                    <div className='inner_app'>
                         <GlobalPage />
                     </div>
                 </div>
