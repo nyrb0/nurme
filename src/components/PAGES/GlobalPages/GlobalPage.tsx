@@ -29,6 +29,8 @@ import SearchGenre from '../SearchGenre/SearchGenre';
 import { FaInstagram } from 'react-icons/fa';
 import { RiTelegramLine } from 'react-icons/ri';
 import { IoLogoTiktok } from 'react-icons/io5';
+import Switch from '../../ThemeSwitch/Switch';
+import { motion } from 'framer-motion';
 
 const GlobalPage: FC = () => {
     const menuCon = useContext(menuContext);
@@ -260,6 +262,14 @@ const GlobalPage: FC = () => {
                                     />
                                 </Link>
                             </div>
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.8 }}
+                                className={`${GlobalS.switch} dfc`}
+                            >
+                                <Switch />
+                            </motion.div>
                             <Navigation />
                         </div>
                     </div>

@@ -257,11 +257,10 @@ section {
                 overflow-x: scroll;
                 -webkit-overflow-scrolling: touch;
                 &::-webkit-scrollbar {
-                    /* для Webkit (Chrome, Safari, Opera) */
                     display: none;
                 }
-                scrollbar-width: none; /* для Firefox */
-                -ms-overflow-style: none; /* для IE и Edge */
+                scrollbar-width: none;
+                -ms-overflow-style: none;
             }
             .left {
                 padding: 10px;
@@ -303,9 +302,62 @@ section {
             }
         }
     }
-
     backdrop-filter: blur(32px);
     background: rgba(255, 255, 255, 0.12);
+}
+
+.seriesBlocks {
+    margin-top: 30px;
+    .listEpisode {
+        font-size: 25px;
+        font-family: 'RobotoMedium', sans-serif;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    & ul {
+        justify-content: center;
+        display: flex;
+        flex-wrap: wrap;
+        & .active {
+            background-color: red;
+        }
+        & li {
+            font-family: 'RobotoBold', sans-serif;
+            background: rgba(255, 255, 255, 0.12);
+            cursor: pointer;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            margin: 5px;
+            width: 50px;
+            padding: 10px;
+            outline: transparent;
+            transform: scale(0.95);
+            transition: transform 0.1s ease-in-out;
+            transition: outline 0.3s ease-in-out;
+
+            &:hover {
+                outline: 1.3px solid red;
+                transform: scale(1);
+            }
+        }
+    }
+    .seriesDown {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-family: 'RobotoMedium', sans-serif;
+        .isLeft {
+            transform: scale(1);
+            transition: transform 0.4s ease-in-out;
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
 }
 
 .error {

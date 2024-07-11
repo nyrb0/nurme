@@ -15,6 +15,7 @@ import { skipToken } from '@reduxjs/toolkit/query';
 import { menuContext } from '../../Context/Menu';
 import unknownUser from '../icons/unknownUser.jpg';
 import { motion } from 'framer-motion';
+import Switch from '../ThemeSwitch/Switch';
 const Header: FC = () => {
     const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
     const menuCon = useContext(menuContext);
@@ -154,11 +155,13 @@ const Header: FC = () => {
                     ) : null}
                 </motion.div>
 
-                {windowWidth >= 1217 ? (
+                {windowWidth >= 1331 ? (
                     <>
-                        {' '}
                         <div className={headerS.menu}>
                             <Navigation />
+                        </div>
+                        <div className={headerS.switch}>
+                            <Switch />
                         </div>
                         <div className={headerS.regis}>
                             {userD && userD.length !== 0 ? (

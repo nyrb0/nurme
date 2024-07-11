@@ -24,6 +24,7 @@ const AnimeItem: FC<AnimeItemProps> = ({ items }) => {
                             <img
                                 src={`${THE_BASE_URL}${items.id}.webp`}
                                 alt={`${items.names}`}
+                                onContextMenu={e => e.preventDefault()}
                             />
                             <div className={animeS.episode}>
                                 {items.player.episodes.last

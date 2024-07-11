@@ -2,7 +2,7 @@
     cursor: pointer;
     .links {
         display: flex;
-        @media screen and (max-width: 1217px) {
+        @media screen and (max-width: 1331px) {
             flex-direction: column;
             align-items: center;
             font-size: 27px;
@@ -11,7 +11,7 @@
             &:hover {
                 color: red;
             }
-            @media screen and (max-width: 1217px) {
+            @media screen and (max-width: 1331px) {
                 margin-bottom: 20px;
             }
             display: flex;

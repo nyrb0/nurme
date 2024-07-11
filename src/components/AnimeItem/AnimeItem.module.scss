@@ -17,6 +17,7 @@
         .view {
             position: relative;
             & img {
+                user-select: none;
                 border-radius: 15px;
                 width: 224px;
                 height: 318px;

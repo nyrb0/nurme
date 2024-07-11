@@ -5,4 +5,4 @@ interface MenuI {
     setMenu: Dispatch<SetStateAction<boolean>>;
 }
 
-export const menuContext = createContext<MenuI | undefined>(undefined);
+export const menuContext = createContext<MenuI | null>(null);

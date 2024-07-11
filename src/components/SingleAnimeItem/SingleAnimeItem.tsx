@@ -26,6 +26,7 @@ import { FaArrowCircleLeft } from 'react-icons/fa';
 import { FaArrowCircleRight } from 'react-icons/fa';
 import l from '../icons/pngwing.com.png';
 import { MdOutlineFullscreenExit } from 'react-icons/md';
+import { IoIosArrowDown } from 'react-icons/io';
 interface SingleAnimeItemProps {}
 const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
     const { id } = useParams<{ id: string }>();
@@ -42,6 +43,8 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
     const [normalizedValue, setNormalizedValue] = useState<number>(
         normalize(stateRating, 0, 2042, 0, 10)
     );
+    const [visibleSeriesLimit, setVisibleSeriesLimit] = useState<number>(50);
+    const episodeLength = single?.player.list.length;
     const [awaitLoading, setAwaitLoading] = useState(true);
 
     const [isScrolledLeft, setIsScrolledLeft] = useState(true);
@@ -111,7 +114,7 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
     const handleSimilarAnimeClick = (id: string) => {
         navigate(`/right-now/title/${id}`);
     };
-
+    console.log(single);
     const searchFavorite = addedFa?.list.some(f => f.id === single?.id);
 
     const delateAndAddFavorite = async () => {
@@ -314,56 +317,109 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
             </div>
             <div className={singleS.descBottom}>{single?.description}</div>
             {single?.player.list.length ? (
-                <div className={singleS.videoPlayer}>
-                    <div className={singleS.options}>
-                        <span className={singleS.episode}>Эпизоды:</span>
-                        <select
-                            value={theEpisode}
-                            onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-                                setTheEpisode(e.target.value)
-                            }
-                            className={singleS.selected}
-                        >
-                            {single?.player.list.map((episode, index) => (
-                                <option key={index} value={episode.episode}>
-                                    {episode.episode} серия
-                                </option>
-                            ))}
-                        </select>
-                        <span className={singleS.quality}>Качество:</span>
-                        <select
-                            value={quality}
-                            onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-                                setQuality(e.target.value)
-                            }
-                            className={singleS.selected}
-                        >
-                            <option value='fhd'>1080р</option>
-                            <option value='hd'>720р</option>
-                            <option value='sd'>480р</option>
-                        </select>
+                <>
+                    <div className={singleS.videoPlayer}>
+                        <div className={singleS.options}>
+                            <span className={singleS.episode}>Эпизоды:</span>
+                            <select
+                                value={theEpisode}
+                                onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+                                    setTheEpisode(e.target.value)
+                                }
+                                className={singleS.selected}
+                            >
+                                {single?.player.list.map((episode, index) => (
+                                    <option key={index} value={episode.episode}>
+                                        {episode.episode} серия
+                                    </option>
+                                ))}
+                            </select>
+                            <span className={singleS.quality}>Качество:</span>
+                            <select
+                                value={quality}
+                                onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+                                    setQuality(e.target.value)
+                                }
+                                className={singleS.selected}
+                            >
+                                <option value='fhd'>1080р</option>
+                                <option value='hd'>720р</option>
+                                <option value='sd'>480р</option>
+                            </select>
+                        </div>
+                        {single?.player.list.map(episode =>
+                            episode.episode === Number(theEpisode) ? (
+                                <ReactPlayer
+                                    width='100%'
+                                    height='100%'
+                                    key={episode.episode}
+                                    controls
+                                    url={`${THE_VIDEO}${
+                                        quality === 'sd'
+                                            ? episode.hls.sd
+                                            : quality === 'hd'
+                                            ? episode.hls.hd
+                                            : episode.hls.fhd
+                                    }`}
+                                />
+                            ) : (
+                                <div key={episode.episode}></div>
+                            )
+                        )}
                     </div>
-                    {single?.player.list.map(episode =>
-                        episode.episode === Number(theEpisode) ? (
-                            <ReactPlayer
-                                width='100%'
-                                height='100%'
-                                key={episode.episode}
-                                controls
-                                url={`${THE_VIDEO}${
-                                    quality === 'sd'
-                                        ? episode.hls.sd
-                                        : quality === 'hd'
-                                        ? episode.hls.hd
-                                        : episode.hls.fhd
-                                }`}
-                            />
-                        ) : (
-                            <div key={episode.episode}></div>
-                        )
-                    )}
-                </div>
+                    <div className={`${singleS.seriesBlocks} `}>
+                        <div className={singleS.listEpisode}>Список серии:</div>
+                        <ul>
+                            {single?.player.list
+                                .slice(0, visibleSeriesLimit)
+                                .map(ep => (
+                                    <li
+                                        key={ep.episode}
+                                        onClick={() =>
+                                            setTheEpisode(ep.episode.toString())
+                                        }
+                                        style={{
+                                            backgroundColor:
+                                                ep.episode.toString() ===
+                                                theEpisode
+                                                    ? 'red'
+                                                    : '',
+                                        }}
+                                    >
+                                        {ep.episode}
+                                    </li>
+                                ))}
+                        </ul>
+                        {episodeLength &&
+                            visibleSeriesLimit < episodeLength && (
+                                <div className={singleS.seriesDown}>
+                                    <div>
+                                        Есть еще{' '}
+                                        {single?.player.list.length
+                                            ? single?.player.list.length -
+                                              visibleSeriesLimit
+                                            : ''}
+                                        -серии
+                                    </div>
+                                    <IoIosArrowDown
+                                        className={singleS.isLeft}
+                                        size={50}
+                                        style={{
+                                            fill: 'red',
+                                            cursor: 'pointer',
+                                        }}
+                                        onClick={() =>
+                                            setVisibleSeriesLimit(
+                                                prevState => prevState + 20
+                                            )
+                                        }
+                                    />
+                                </div>
+                            )}
+                    </div>
+                </>
             ) : null}
+
             <div className={singleS.similars}>
                 <div className={singleS.similarText}>Похожие</div>
                 <div className={singleS.simBox}>

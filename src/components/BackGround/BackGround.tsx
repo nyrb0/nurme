@@ -1,7 +1,16 @@
-import React from 'react';
+import { useContext } from 'react';
+import { ThemeContext } from '../../Context/Theme';
+import bgNight from '../icons/BG.webp';
+import bgLight from '../icons/BGLight.webp';
 
 const BackGround = () => {
-    return <div className='background'></div>;
+    const con = useContext(ThemeContext);
+    if (!con) throw new Error('Error in theme context');
+
+    const { theme } = con;
+    return (
+        <div className={`background ${theme ? 'bgLight' : 'bgNight'}`}></div>
+    );
 };
 
 export default BackGround;

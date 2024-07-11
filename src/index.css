@@ -36,10 +36,16 @@ body {
     z-index: -10;
     width: 100%;
     height: 100vh;
-    background-image: url('./components/icons/BG6.jpg');
+    background-image: url('./components/icons/BG.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
+}
+.bgLight {
+    background-image: url('./components/icons/BGLight.webp');
+}
+.bgNight {
+    background-image: url('./components/icons/BG.webp');
 }
 .df {
     display: flex;
@@ -91,9 +97,7 @@ option {
     color: var(--text-color);
     font-size: 18px;
 }
-body {
-    overflow: overlay;
-}
+
 .max-w {
     max-width: 1400px;
     margin: 0 auto;
