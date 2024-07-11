@@ -143,9 +143,9 @@
     display: flex;
     justify-content: center;
     margin: 0 6px 0 6px;
-    cursor: pointer;
     top: 5px;
     & img {
+        cursor: default;
         object-fit: cover;
         width: 60px;
         height: 60px;

@@ -31,17 +31,19 @@ body {
     font-family: var(--roboto-regular);
     color: white;
 }
+
 .background {
     position: fixed;
     z-index: -10;
     width: 100%;
     height: 100vh;
+    background-image: url('./components/icons/BG.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 }
 .bgLight {
-    background-image: url('./components/icons/BGLight.webp');
+    background-image: url('./components/icons/BG.webp');
 }
 .bgNight {
     background-image: url('./components/icons/BG.webp');
