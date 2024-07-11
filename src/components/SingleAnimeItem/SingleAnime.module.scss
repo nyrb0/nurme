@@ -337,6 +337,11 @@ section {
             transform: scale(0.95);
             transition: transform 0.1s ease-in-out;
             transition: outline 0.3s ease-in-out;
+            @media screen and (max-width: 520px) {
+                margin: 3px;
+                font-size: 16px;
+                width: 20px;
+            }
 
             &:hover {
                 outline: 1.3px solid red;
