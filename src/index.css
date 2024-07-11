@@ -43,7 +43,7 @@ body {
     background-position: center center;
 }
 .bgLight {
-    background-image: url('./components/icons/BG.webp');
+    background-image: url('./components/icons/BGLight.webp');
 }
 .bgNight {
     background-image: url('./components/icons/BG.webp');
