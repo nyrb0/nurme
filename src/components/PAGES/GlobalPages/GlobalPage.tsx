@@ -92,9 +92,14 @@ const GlobalPage: FC = () => {
         e.preventDefault();
         setIsVisible(false);
         dispatch(delateStorage([]));
-        navigate(
-            `/category?year=${state}&genre=${genres}&season_code=${toSeasonIndex}`
-        );
+        let settings = `/category?year=${state}`;
+        if (genres.length > 0) {
+            settings += `&genre=${genres}`;
+        }
+        if (toSeasonIndex) {
+            settings += `&season_code=${toSeasonIndex}`;
+        }
+        navigate(settings);
     };
 
     const genresFilter = (selectGenres: string) => {
