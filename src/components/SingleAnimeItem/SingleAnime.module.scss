@@ -308,11 +308,18 @@ section {
 
 .seriesBlocks {
     margin-top: 30px;
+    @media screen and (max-width: 752px) {
+        margin-top: 10px;
+    }
     .listEpisode {
         font-size: 25px;
         font-family: 'RobotoMedium', sans-serif;
         text-align: center;
         margin-bottom: 30px;
+        @media screen and (max-width: 752px) {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
     }
     & ul {
         justify-content: center;
@@ -374,6 +381,14 @@ section {
     border-radius: 5px;
     backdrop-filter: blur(32px);
     background: rgba(255, 255, 255, 0.12);
+    @media screen and (max-width: 752px) {
+        margin-top: 5px;
+        font-size: 15px;
+    }
+    @media screen and (max-width: 346px) {
+        padding: 6px;
+        font-size: 12px;
+    }
 }
 .error {
     min-height: 60vh;
