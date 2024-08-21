@@ -1,7 +1,7 @@
 section {
     margin-top: 40px;
-    @media screen and (max-width: 423px) {
-        margin-top: 10px;
+    @media screen and (max-width: 680px) {
+        margin-top: 0;
     }
     .partContent {
         display: flex;
@@ -95,7 +95,9 @@ section {
                         line-height: 30px;
                         -webkit-line-clamp: 2; /* Ограничить до  строк */
                     }
-                    @media screen and (max-width: 598px) {
+                    @media screen and (max-width: 380px) {
+                        font-size: 15px;
+                        line-height: 20px;
                     }
                 }
                 & .en {
@@ -138,6 +140,17 @@ section {
                     flex-wrap: wrap;
                     @media screen and (max-width: 383px) {
                         margin: 3px 0 3px 0;
+                    }
+                    & span {
+                        margin-left: 2px;
+                        border-radius: 8px;
+                        padding: 3px 15px;
+                        margin-bottom: 4px;
+                        @media screen and (max-width: 380px) {
+                            font-size: 12px;
+                        }
+                        background: rgba(255, 255, 255, 0.12);
+                        cursor: pointer;
                     }
                 }
                 & .status {
@@ -190,10 +203,16 @@ section {
         font-size: 13px;
         line-height: 15px;
     }
+    @media screen and (max-width: 680px) {
+        margin-top: 10px;
+    }
 }
 .videoPlayer {
     margin-top: 40px;
     font-size: 16px;
+    @media screen and (max-width: 380px) {
+        margin-top: 20px;
+    }
     & .options {
         @media screen and (max-width: 536px) {
             display: flex;

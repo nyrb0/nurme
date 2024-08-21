@@ -31,6 +31,7 @@ import { RiTelegramLine } from 'react-icons/ri';
 import { IoLogoTiktok } from 'react-icons/io5';
 import Switch from '../../ThemeSwitch/Switch';
 import { motion } from 'framer-motion';
+import animateDeafthNote from '../../icons/animation/dafthNOte.gif';
 
 const GlobalPage: FC = () => {
     const menuCon = useContext(menuContext);
@@ -317,15 +318,24 @@ const GlobalPage: FC = () => {
                             <Navigation />
                         </div>
                     </div>
-                    <div className={`${GlobalS.i} df`}>
-                        <span>
-                            {icons.map((ic, i) => (
-                                <a href={urls[i]} target='_blank' key={i}>
-                                    <span>{ic}</span>
-                                </a>
-                            ))}
-                        </span>
+                    <div>
+                        <div className={`${GlobalS.i}`}>
+                            <span className={GlobalS.animateDeathNote}>
+                                <img
+                                    src={animateDeafthNote}
+                                    alt='Death note gif'
+                                />
+                            </span>
+                            <span className='df'>
+                                {icons.map((ic, i) => (
+                                    <a href={urls[i]} target='_blank' key={i}>
+                                        <span>{ic}</span>
+                                    </a>
+                                ))}
+                            </span>
+                        </div>
                     </div>
+
                     <Link
                         to={'/'}
                         className={GlobalS.footer}

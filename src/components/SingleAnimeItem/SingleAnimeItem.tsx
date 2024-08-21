@@ -300,7 +300,7 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
                     <div className={singleS.desc}>{single?.description}</div>
                     <div className={singleS.moreInformation}>
                         <div className={`${singleS.genres} df`}>
-                            Жанры:
+                            Жанры:{' '}
                             <>
                                 {single?.genres.map(genres => (
                                     <span
@@ -394,26 +394,42 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
                                         }`}
                                     />
                                     <div className='dfc'>
-                                        <button
-                                            className={singleS.skipsIntro}
-                                            onClick={() =>
-                                                skipIntroVideo(
-                                                    episode.skips.opening[1]
-                                                )
-                                            }
-                                            style={{
-                                                visibility:
-                                                    currentTime >=
-                                                        episode.skips
-                                                            .opening[0] &&
-                                                    currentTime <=
+                                        {currentTime >=
+                                        episode.skips.opening[0] ? (
+                                            <button
+                                                className={singleS.skipsIntro}
+                                                onClick={() =>
+                                                    skipIntroVideo(
                                                         episode.skips.opening[1]
-                                                        ? 'visible'
-                                                        : 'hidden',
-                                            }}
-                                        >
-                                            Пропустить заставку
-                                        </button>
+                                                    )
+                                                }
+                                                style={{
+                                                    visibility:
+                                                        currentTime >=
+                                                            episode.skips
+                                                                .opening[0] &&
+                                                        currentTime <=
+                                                            episode.skips
+                                                                .opening[1]
+                                                            ? 'visible'
+                                                            : 'hidden',
+                                                }}
+                                            >
+                                                Пропустить заставку
+                                            </button>
+                                        ) : currentTime <=
+                                          episode.skips.opening[1] ? (
+                                            <button
+                                                className={singleS.skipsIntro}
+                                                onClick={() =>
+                                                    skipIntroVideo(
+                                                        episode.skips.opening[0]
+                                                    )
+                                                }
+                                            >
+                                                Переместить к заставке
+                                            </button>
+                                        ) : null}
                                     </div>
                                 </div>
                             ) : (

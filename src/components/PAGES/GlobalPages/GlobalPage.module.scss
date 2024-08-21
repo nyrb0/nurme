@@ -99,6 +99,8 @@
 }
 
 .menu {
+    position: relative;
+    z-index: 99;
     height: 400px;
     display: flex;
     align-items: center;
@@ -112,12 +114,15 @@
     }
 }
 .i {
+    position: relative;
     height: 50px;
     display: flex;
+    z-index: 2;
     align-items: center;
     justify-content: center;
     border-radius: 10px;
     background: rgba(255, 255, 255, 0.12);
+    border: 2px solid black;
     transform: scale(0.95);
     transition: transform 0.5s ease;
     &:hover {
@@ -144,6 +149,7 @@
     justify-content: center;
     margin: 0 6px 0 6px;
     top: 5px;
+    z-index: 1;
     & img {
         cursor: default;
         object-fit: cover;
@@ -155,4 +161,15 @@
 }
 .ppp {
     max-width: 500px;
+}
+.animateDeathNote {
+    position: absolute;
+    bottom: 33px;
+    user-select: none;
+    @media screen and (max-width: 330px) {
+        bottom: 35px;
+    }
+    & img {
+        width: 90%;
+    }
 }
