@@ -60,6 +60,10 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
     const [theEpisode, setTheEpisode] = useState<string>('1');
     const navigate = useNavigate();
     const [quality, setQuality] = useState('');
+
+    const [currentTime, setCurrentTime] = useState(0);
+    const playerRef = useRef<null | ReactPlayer>(null);
+
     useEffect(() => {
         setTheEpisode(
             single?.player.episodes && single?.player.episodes.first
@@ -114,7 +118,7 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
     const handleSimilarAnimeClick = (id: string) => {
         navigate(`/right-now/title/${id}`);
     };
-    console.log(single);
+
     const searchFavorite = addedFa?.list.some(f => f.id === single?.id);
 
     const delateAndAddFavorite = async () => {
@@ -140,6 +144,22 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
     ): number {
         return ((value - min) * (newMax - newMin)) / (max - min) + newMin;
     }
+    // react players
+    const skipIntroVideo = (s: number) => {
+        if (playerRef.current) {
+            playerRef.current.seekTo(s);
+        }
+    };
+    //////////////////////////////////////
+
+    const handleProgress = (
+        player: { playedSeconds: number },
+        episodeEndSecodIntro: number[]
+    ) => {
+        if (player.playedSeconds < episodeEndSecodIntro[1] + 5) {
+            setCurrentTime(player.playedSeconds);
+        }
+    };
 
     const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
@@ -328,8 +348,11 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
                                 }
                                 className={singleS.selected}
                             >
-                                {single?.player.list.map((episode, index) => (
-                                    <option key={index} value={episode.episode}>
+                                {single?.player.list.map(episode => (
+                                    <option
+                                        key={episode.episode}
+                                        value={episode.episode}
+                                    >
                                         {episode.episode} серия
                                     </option>
                                 ))}
@@ -349,24 +372,56 @@ const SingleAnimeItem: FC<SingleAnimeItemProps> = () => {
                         </div>
                         {single?.player.list.map(episode =>
                             episode.episode === Number(theEpisode) ? (
-                                <ReactPlayer
-                                    width='100%'
-                                    height='100%'
-                                    key={episode.episode}
-                                    controls
-                                    url={`${THE_VIDEO}${
-                                        quality === 'sd'
-                                            ? episode.hls.sd
-                                            : quality === 'hd'
-                                            ? episode.hls.hd
-                                            : episode.hls.fhd
-                                    }`}
-                                />
+                                <div>
+                                    <ReactPlayer
+                                        ref={playerRef}
+                                        width='100%'
+                                        height='100%'
+                                        key={episode.episode}
+                                        onProgress={progress =>
+                                            handleProgress(
+                                                progress,
+                                                episode.skips.opening
+                                            )
+                                        }
+                                        controls
+                                        url={`${THE_VIDEO}${
+                                            quality === 'sd'
+                                                ? episode.hls.sd
+                                                : quality === 'hd'
+                                                ? episode.hls.hd
+                                                : episode.hls.fhd
+                                        }`}
+                                    />
+                                    <div className='dfc'>
+                                        <button
+                                            className={singleS.skipsIntro}
+                                            onClick={() =>
+                                                skipIntroVideo(
+                                                    episode.skips.opening[1]
+                                                )
+                                            }
+                                            style={{
+                                                visibility:
+                                                    currentTime >=
+                                                        episode.skips
+                                                            .opening[0] &&
+                                                    currentTime <=
+                                                        episode.skips.opening[1]
+                                                        ? 'visible'
+                                                        : 'hidden',
+                                            }}
+                                        >
+                                            Пропустить заставку
+                                        </button>
+                                    </div>
+                                </div>
                             ) : (
                                 <div key={episode.episode}></div>
                             )
                         )}
                     </div>
+
                     <div className={`${singleS.seriesBlocks} `}>
                         <div className={singleS.listEpisode}>Список серии:</div>
                         <ul>

@@ -40,8 +40,10 @@ const GlobalPage: FC = () => {
     const { menu, setMenu } = menuCon;
 
     const [selectedCurrent, setSelectredCurrent] = useState<string | number>(
-        'Выберете'
+        'Жанры'
     );
+    const [toSeasonIndex, setToSeasonIndex] = useState<number>();
+    const [seasonSelected, setSeasonSelected] = useState<string>('Сезон');
 
     const dispatch = useAppDispatch();
     const { data: genresArray } = useGetGenresQuery({});
@@ -90,7 +92,9 @@ const GlobalPage: FC = () => {
         e.preventDefault();
         setIsVisible(false);
         dispatch(delateStorage([]));
-        navigate(`/category?year=${state}&genre=${genres}`);
+        navigate(
+            `/category?year=${state}&genre=${genres}&season_code=${toSeasonIndex}`
+        );
     };
 
     const genresFilter = (selectGenres: string) => {
@@ -111,15 +115,44 @@ const GlobalPage: FC = () => {
         setGenres(addToGenres);
     };
 
-    const handleOptionChange = (newValue: string | number, type?: string) => {
+    const handleOptionChange = (newValue: string | number) => {
         if (typeof newValue === 'string') {
             genresFilter(newValue);
-        } else if (typeof newValue === 'number' && type) {
-            selectedEndAndStartYears2(newValue, type);
+        }
+        //  else if (typeof newValue === 'number' && type) {
+        //     selectedEndAndStartYears2(newValue, type);
+        // }
+    };
+    const changeOptionsYears = (value: number | string, type?: string) => {
+        if (typeof value === 'number' && type) {
+            selectedEndAndStartYears2(value, type);
         }
     };
-    const changeCurrent = (current: string) => {
-        setSelectredCurrent(current);
+
+    const seasonListFull = [
+        {
+            winter: 1,
+        },
+        {
+            spring: 2,
+        },
+        {
+            summer: 3,
+        },
+        {
+            autumn: 4,
+        },
+    ];
+    const seasonText = seasonListFull.map(l => Object.keys(l)[0]);
+    const changeCurrentSeason = (current: string | number) => {
+        if (typeof current === 'string') {
+            setSeasonSelected(current);
+            seasonListFull.forEach((el, i) => {
+                if (Object.keys(el).toString() === current) {
+                    setToSeasonIndex(i + 1);
+                }
+            });
+        }
     };
 
     const { userId } = useAppSelector(state => state.auth);
@@ -159,12 +192,12 @@ const GlobalPage: FC = () => {
                     maxWidth={500}
                     onClick={() => setIsVisible(false)}
                     children={
-                        <div className={`${GlobalS.category} `}>
+                        <div className={`${GlobalS.category}`}>
                             <span className={GlobalS.sortT}>
                                 Сортировать по категориям
                             </span>
-                            <div className={`${GlobalS.selected} `}>
-                                <div className={`${GlobalS.selectedGenres} `}>
+                            <div className={`${GlobalS.selected}`}>
+                                <div className={`${GlobalS.selectedGenres}`}>
                                     <div
                                         style={{
                                             fontSize: 15,
@@ -212,13 +245,19 @@ const GlobalPage: FC = () => {
                                 </div>
                             </div>
                             <form onSubmit={filterCategory}>
-                                <span className={GlobalS.titleC}>Жанры:</span>
+                                <span className={GlobalS.titleC}>Отделы:</span>
                                 <div className='mtAndMtOprion'>
                                     <Select
                                         option={genresArray}
                                         selectedOption={selectedCurrent}
                                         onOptionChange={handleOptionChange}
-                                        onChangeCurrent={changeCurrent}
+                                    />
+                                </div>
+                                <div className='season'>
+                                    <Select
+                                        option={seasonText}
+                                        selectedOption={seasonSelected}
+                                        onOptionChange={changeCurrentSeason}
                                     />
                                 </div>
                                 <div className='mtAndMtOprion'>
@@ -226,7 +265,7 @@ const GlobalPage: FC = () => {
                                         type={'start'}
                                         option={listYearsSort}
                                         selectedOption={startEndYears.start}
-                                        onOptionChange={handleOptionChange}
+                                        onOptionChange={changeOptionsYears}
                                     />
                                 </div>
                                 <div className='mtAndMtOprion'>
@@ -234,7 +273,7 @@ const GlobalPage: FC = () => {
                                         type={'end'}
                                         option={listYearsSort}
                                         selectedOption={startEndYears.end}
-                                        onOptionChange={handleOptionChange}
+                                        onOptionChange={changeOptionsYears}
                                     />
                                 </div>
                                 <div className={GlobalS.button}>
@@ -334,6 +373,7 @@ const GlobalPage: FC = () => {
                     <Route path='/profile' element={<OwnUserProfile />} />
                     <Route path='/result' element={<Result />} />
                     <Route path='/search' element={<SearchGenre />} />
+
                     {/* Новый маршрут для авторизации */}
                     <Route path='/route-regis' element={<MobileRegis />} />
                     <Route path='/' element={<TheProject />} />

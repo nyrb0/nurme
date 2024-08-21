@@ -23,6 +23,7 @@ type categoty = {
     year?: string | null;
     limit?: number;
     page?: number;
+    seasonCode: number;
 };
 export const animeData = createApi({
     reducerPath: 'animeUpdate',
@@ -55,11 +56,13 @@ export const animeData = createApi({
         }),
 
         getResultCategory: builder.query<AnimeUpdates, categoty>({
-            query: ({ genres, year, page = 1, limit = 10 }) => {
+            query: ({ genres, year, page = 1, limit = 10, seasonCode }) => {
                 let sort =
                     'title/search?filter=id,code,names.ru,genres,type.episodes,status.code,player.episodes,player.episodes.last,posters,season.year';
                 if (year) sort += `&year=${year}`;
                 if (genres && genres.length !== 0) sort += `&genres=${genres}`;
+                if (seasonCode) sort += seasonCode;
+
                 return `${sort}&page=${page}&items_per_page=${limit}`;
             },
         }),

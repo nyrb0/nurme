@@ -5,7 +5,7 @@ import selectS from './Select.module.scss';
 
 interface SelectI {
     option: string[] | number[] | undefined;
-    onOptionChange: (value: string | number, type: string) => void;
+    onOptionChange: (value: string | number, type?: string) => void;
     selectedOption: string | number;
     type?: string | undefined;
     onChangeCurrent?: (value: string) => void;

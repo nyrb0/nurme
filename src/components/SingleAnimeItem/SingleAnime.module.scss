@@ -364,7 +364,17 @@ section {
         }
     }
 }
-
+.skipsIntro {
+    margin-top: 20px;
+    font-family: 'RobotoBold', sans-serif;
+    color: red;
+    padding: 10px;
+    border: none;
+    font-size: 20px;
+    border-radius: 5px;
+    backdrop-filter: blur(32px);
+    background: rgba(255, 255, 255, 0.12);
+}
 .error {
     min-height: 60vh;
 }
