@@ -86,7 +86,6 @@ const GlobalPage: FC = () => {
         }
         setState(newYears);
     }, [startEndYears]);
-
     const navigate = useNavigate();
 
     const filterCategory = (e: FormEvent) => {
