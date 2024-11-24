@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { BASEURL } from '../utils/baseUrls';
-import { AnimeUpdates, Title } from '../types/UpdateA';
-import { Root2 } from '../types/SchuduleType';
+import { BASEURL } from '../shared/utils/baseUrls';
+import { AnimeUpdates, Title } from '../shared/types/UpdateA';
+import { Root2 } from '../shared/types/SchuduleType';
 
 type Pages = {
     page: number;

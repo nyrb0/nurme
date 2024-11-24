@@ -1,12 +1,11 @@
-import './components/styles/App.scss';
-import GlobalPage from './components/PAGES/GlobalPages/GlobalPage';
-import './components/styles/App.scss';
-import { isVisibleContext } from './Context/Visible';
-import './components/styles/media.scss';
+import './shared/styles/App.scss';
+import { isVisibleContext } from './features/Context/Visible';
+import './shared/styles/media.scss';
 import { useState } from 'react';
-import { menuContext } from './Context/Menu';
-import BackGround from './components/BackGround/BackGround';
-import { ThemeGlobal } from './Context/Theme';
+import { menuContext } from './features/Context/Menu';
+import BackGround from './widgets/components/BackGround/BackGround';
+import { ThemeGlobal } from './features/Context/Theme';
+import GlobalPage from './PAGES/GlobalPages/GlobalPage';
 
 function App() {
     const [isVisible, setIsVisible] = useState(false);

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { BASEURL } from '../../utils/baseUrls';
-import { UserInfoType } from '../../types/userType';
-import { AnimeUpdates } from '../../types/UpdateA';
+import { BASEURL } from '../../shared/utils/baseUrls';
+import { UserInfoType } from '../../shared/types/userType';
+import { AnimeUpdates } from '../../shared/types/UpdateA';
 
 type favoriteType = {
     session: string | null;

@@ -1,4 +1,4 @@
-@import url(./components/styles/resetToNull.css);
+@import url(./shared/styles/resetToNull.css);
 :root {
     --for-all-color: white;
     --roboto-regular: 'RobotoRegular', sans-serif;
@@ -6,21 +6,21 @@
 /* ШРИФТЫ */
 @font-face {
     font-family: 'RobotoRegular';
-    src: url('./fonts/Roboto-Regular.woff2') format('woff2');
+    src: url('./assets/fonts/Roboto-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: block;
 }
 @font-face {
     font-family: 'RobotoMedium';
-    src: url('./fonts/Roboto-Medium.woff2') format('woff2');
+    src: url('./assets/fonts/Roboto-Medium.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: block;
 }
 @font-face {
     font-family: 'RobotoBold';
-    src: url('./fonts/Roboto-Bold.woff2') format('woff2');
+    src: url('./assets/fonts/Roboto-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: block;
@@ -37,16 +37,16 @@ body {
     z-index: -10;
     width: 100%;
     height: 100vh;
-    background-image: url('./components/icons/BG.webp');
+    background-image: url('./assets/icons/BG.webp');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
 }
 .bgLight {
-    background-image: url('./components/icons/BGLight.webp');
+    background-image: url('./assets/icons/BGLight.webp');
 }
 .bgNight {
-    background-image: url('./components/icons/BG.webp');
+    background-image: url('./assets/icons/BG.webp');
 }
 .df {
     display: flex;
