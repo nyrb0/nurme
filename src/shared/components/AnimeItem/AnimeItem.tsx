@@ -27,7 +27,7 @@ const AnimeItem: FC<AnimeItemProps> = ({ items }) => {
                                 onContextMenu={e => e.preventDefault()}
                             />
                             <div className={animeS.episode}>
-                                {items.player.episodes.last
+                                {items.player.episodes?.last
                                     ? items.player.episodes.last === 1
                                         ? `${items.player.episodes.last} серия`
                                         : `${items.player.episodes.last} серии`
