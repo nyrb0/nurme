@@ -22,8 +22,8 @@ const TheProject = () => {
     const [loading, setLoading] = useState<boolean>(true);
     const audioRef = useRef<HTMLAudioElement>(null);
     useEffect(() => {
-        getShowAnimeRibbon(setAnimeRibbon1, 20);
-        getShowAnimeRibbon(setAnimeRibbon2, 15);
+        getShowAnimeRibbon(setAnimeRibbon1, 1);
+        getShowAnimeRibbon(setAnimeRibbon2, 2);
     }, []);
     const getShowAnimeRibbon = async (state: any, page: number) => {
         try {
